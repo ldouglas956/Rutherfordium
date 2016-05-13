@@ -99,13 +99,10 @@
 		8E769E031CE59D3F0015139A /* Rutherfordium */ = {
 			isa = PBXGroup;
 			children = (
-				8E769E041CE59D3F0015139A /* AppDelegate.swift */,
-				8E769E061CE59D3F0015139A /* ViewController.swift */,
-				8E769E081CE59D3F0015139A /* Main.storyboard */,
-				8E769E0E1CE59D3F0015139A /* Assets.xcassets */,
-				8E769E101CE59D3F0015139A /* LaunchScreen.storyboard */,
-				8E769E131CE59D3F0015139A /* Info.plist */,
-				8E769E0B1CE59D3F0015139A /* Rutherfordium.xcdatamodeld */,
+				8E769E381CE59E270015139A /* MODEL */,
+				8E769E361CE59E1C0015139A /* VIEW */,
+				8E769E371CE59E220015139A /* CONTROLLER */,
+				8E769E351CE59E110015139A /* Supporting Files */,
 			);
 			path = Rutherfordium;
 			sourceTree = "<group>";
@@ -126,6 +123,41 @@
 				8E769E291CE59D3F0015139A /* Info.plist */,
 			);
 			path = RutherfordiumUITests;
+			sourceTree = "<group>";
+		};
+		8E769E351CE59E110015139A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8E769E041CE59D3F0015139A /* AppDelegate.swift */,
+				8E769E0E1CE59D3F0015139A /* Assets.xcassets */,
+				8E769E131CE59D3F0015139A /* Info.plist */,
+				8E769E0B1CE59D3F0015139A /* Rutherfordium.xcdatamodeld */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8E769E361CE59E1C0015139A /* VIEW */ = {
+			isa = PBXGroup;
+			children = (
+				8E769E081CE59D3F0015139A /* Main.storyboard */,
+				8E769E101CE59D3F0015139A /* LaunchScreen.storyboard */,
+			);
+			name = VIEW;
+			sourceTree = "<group>";
+		};
+		8E769E371CE59E220015139A /* CONTROLLER */ = {
+			isa = PBXGroup;
+			children = (
+				8E769E061CE59D3F0015139A /* ViewController.swift */,
+			);
+			name = CONTROLLER;
+			sourceTree = "<group>";
+		};
+		8E769E381CE59E270015139A /* MODEL */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = MODEL;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
