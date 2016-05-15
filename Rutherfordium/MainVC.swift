@@ -11,11 +11,14 @@ import CoreData
 
 class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+	@IBOutlet weak var tableView: UITableView!
 	var categories = [Category]()
 	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		tableView.delegate = self
+		tableView.dataSource = self
 
 		loadCategories()
 	}
@@ -40,6 +43,7 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		print(categories.count)
 		return categories.count
 	}
 	
