@@ -8,13 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		8E769E051CE59D3F0015139A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E769E041CE59D3F0015139A /* AppDelegate.swift */; };
-		8E769E071CE59D3F0015139A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E769E061CE59D3F0015139A /* ViewController.swift */; };
+		8E769E071CE59D3F0015139A /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E769E061CE59D3F0015139A /* MainVC.swift */; };
 		8E769E0A1CE59D3F0015139A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E769E081CE59D3F0015139A /* Main.storyboard */; };
 		8E769E0D1CE59D3F0015139A /* Rutherfordium.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8E769E0B1CE59D3F0015139A /* Rutherfordium.xcdatamodeld */; };
-		8E769E0F1CE59D3F0015139A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E769E0E1CE59D3F0015139A /* Assets.xcassets */; };
 		8E769E121CE59D3F0015139A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E769E101CE59D3F0015139A /* LaunchScreen.storyboard */; };
 		8E769E1D1CE59D3F0015139A /* RutherfordiumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E769E1C1CE59D3F0015139A /* RutherfordiumTests.swift */; };
 		8E769E281CE59D3F0015139A /* RutherfordiumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E769E271CE59D3F0015139A /* RutherfordiumUITests.swift */; };
+		8EB668281CE6662B00E0A75A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EB668271CE6662B00E0A75A /* Assets.xcassets */; };
+		8EB6682A1CE6688500E0A75A /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB668291CE6688500E0A75A /* Category.swift */; };
+		8EB6682C1CE6697100E0A75A /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6682B1CE6697100E0A75A /* Recipe.swift */; };
+		8EB668321CE6821100E0A75A /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB668311CE6821100E0A75A /* CategoryCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,10 +40,9 @@
 /* Begin PBXFileReference section */
 		8E769E011CE59D3F0015139A /* Rutherfordium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rutherfordium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E769E041CE59D3F0015139A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8E769E061CE59D3F0015139A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8E769E061CE59D3F0015139A /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		8E769E091CE59D3F0015139A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8E769E0C1CE59D3F0015139A /* Rutherfordium.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Rutherfordium.xcdatamodel; sourceTree = "<group>"; };
-		8E769E0E1CE59D3F0015139A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E769E111CE59D3F0015139A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8E769E131CE59D3F0015139A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E769E181CE59D3F0015139A /* RutherfordiumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RutherfordiumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +51,10 @@
 		8E769E231CE59D3F0015139A /* RutherfordiumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RutherfordiumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E769E271CE59D3F0015139A /* RutherfordiumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RutherfordiumUITests.swift; sourceTree = "<group>"; };
 		8E769E291CE59D3F0015139A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8EB668271CE6662B00E0A75A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8EB668291CE6688500E0A75A /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		8EB6682B1CE6697100E0A75A /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		8EB668311CE6821100E0A75A /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,8 +134,8 @@
 		8E769E351CE59E110015139A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8EB668271CE6662B00E0A75A /* Assets.xcassets */,
 				8E769E041CE59D3F0015139A /* AppDelegate.swift */,
-				8E769E0E1CE59D3F0015139A /* Assets.xcassets */,
 				8E769E131CE59D3F0015139A /* Info.plist */,
 				8E769E0B1CE59D3F0015139A /* Rutherfordium.xcdatamodeld */,
 			);
@@ -141,6 +147,7 @@
 			children = (
 				8E769E081CE59D3F0015139A /* Main.storyboard */,
 				8E769E101CE59D3F0015139A /* LaunchScreen.storyboard */,
+				8EB668311CE6821100E0A75A /* CategoryCell.swift */,
 			);
 			name = VIEW;
 			sourceTree = "<group>";
@@ -148,7 +155,7 @@
 		8E769E371CE59E220015139A /* CONTROLLER */ = {
 			isa = PBXGroup;
 			children = (
-				8E769E061CE59D3F0015139A /* ViewController.swift */,
+				8E769E061CE59D3F0015139A /* MainVC.swift */,
 			);
 			name = CONTROLLER;
 			sourceTree = "<group>";
@@ -156,6 +163,8 @@
 		8E769E381CE59E270015139A /* MODEL */ = {
 			isa = PBXGroup;
 			children = (
+				8EB668291CE6688500E0A75A /* Category.swift */,
+				8EB6682B1CE6697100E0A75A /* Recipe.swift */,
 			);
 			name = MODEL;
 			sourceTree = "<group>";
@@ -265,7 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E769E121CE59D3F0015139A /* LaunchScreen.storyboard in Resources */,
-				8E769E0F1CE59D3F0015139A /* Assets.xcassets in Resources */,
+				8EB668281CE6662B00E0A75A /* Assets.xcassets in Resources */,
 				8E769E0A1CE59D3F0015139A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,9 +300,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E769E071CE59D3F0015139A /* ViewController.swift in Sources */,
+				8E769E071CE59D3F0015139A /* MainVC.swift in Sources */,
 				8E769E051CE59D3F0015139A /* AppDelegate.swift in Sources */,
 				8E769E0D1CE59D3F0015139A /* Rutherfordium.xcdatamodeld in Sources */,
+				8EB6682A1CE6688500E0A75A /* Category.swift in Sources */,
+				8EB6682C1CE6697100E0A75A /* Recipe.swift in Sources */,
+				8EB668321CE6821100E0A75A /* CategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +530,7 @@
 				8E769E2E1CE59D3F0015139A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8E769E2F1CE59D3F0015139A /* Build configuration list for PBXNativeTarget "RutherfordiumTests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +539,7 @@
 				8E769E311CE59D3F0015139A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8E769E321CE59D3F0015139A /* Build configuration list for PBXNativeTarget "RutherfordiumUITests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +548,7 @@
 				8E769E341CE59D3F0015139A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
