@@ -19,8 +19,18 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 		super.viewDidLoad()
 		tableView.delegate = self
 		tableView.dataSource = self
-
+		
+		setAppTitle()
 		loadCategories()
+	}
+	
+	
+	func setAppTitle() {
+		let titleView = UIImageView(frame: CGRectMake(0, 0, 50, 60))
+		titleView.contentMode = .ScaleAspectFit
+		titleView.image = UIImage(named: "Rachels-Recipes")
+		
+		self.navigationItem.titleView = titleView
 	}
 
 	
