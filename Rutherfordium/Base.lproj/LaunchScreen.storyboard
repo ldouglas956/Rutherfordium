@@ -16,7 +16,36 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rachels-Recipes" translatesAutoresizingMaskIntoConstraints="NO" id="u9S-kC-N75">
+                                <rect key="frame" x="0.0" y="200" width="600" height="200"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.9137254901960784" green="0.27843137254901962" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Launch1" translatesAutoresizingMaskIntoConstraints="NO" id="4RG-BJ-AEM">
+                                <rect key="frame" x="0.0" y="400" width="600" height="200"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Launch3" translatesAutoresizingMaskIntoConstraints="NO" id="ZIi-aa-hQf">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="kAN-Zb-zFq"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ZIi-aa-hQf" secondAttribute="trailing" id="4Rq-Po-aOn"/>
+                            <constraint firstItem="ZIi-aa-hQf" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="8zP-eV-3gh"/>
+                            <constraint firstItem="4RG-BJ-AEM" firstAttribute="top" secondItem="u9S-kC-N75" secondAttribute="bottom" id="9od-NX-9FP"/>
+                            <constraint firstItem="ZIi-aa-hQf" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="TN6-V5-7o7"/>
+                            <constraint firstItem="u9S-kC-N75" firstAttribute="trailing" secondItem="4RG-BJ-AEM" secondAttribute="trailing" id="Ubw-7h-syw"/>
+                            <constraint firstItem="u9S-kC-N75" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="gqx-YW-P3k"/>
+                            <constraint firstItem="ZIi-aa-hQf" firstAttribute="leading" secondItem="u9S-kC-N75" secondAttribute="leading" id="mLN-ET-OyX"/>
+                            <constraint firstItem="u9S-kC-N75" firstAttribute="leading" secondItem="4RG-BJ-AEM" secondAttribute="leading" id="oLO-om-Bua"/>
+                            <constraint firstItem="ZIi-aa-hQf" firstAttribute="trailing" secondItem="u9S-kC-N75" secondAttribute="trailing" id="qie-o9-FIF"/>
+                            <constraint firstItem="u9S-kC-N75" firstAttribute="top" secondItem="ZIi-aa-hQf" secondAttribute="bottom" id="rbg-Op-6PJ"/>
+                            <constraint firstItem="4RG-BJ-AEM" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="z8n-Il-JWR"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -24,4 +53,9 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Launch1" width="1920" height="786"/>
+        <image name="Launch3" width="1920" height="1280"/>
+        <image name="Rachels-Recipes" width="587" height="146"/>
+    </resources>
 </document>

@@ -12,11 +12,11 @@ import UIKit
 class Recipe {
 	
 	var recipeName: String
-	var recipeImage: UIImageView
+	var recipeImage: UIImage
 	
-	init(name: String, image: UIImageView) {
-		recipeName = name
-		recipeImage = image
+	init(name: String, image: UIImage) {
+		self.recipeName = name
+		self.recipeImage = image
 	}
 	
 }

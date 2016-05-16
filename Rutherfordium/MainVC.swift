@@ -43,7 +43,6 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		print(categories.count)
 		return categories.count
 	}
 	
