@@ -20,7 +20,6 @@
 		8EB668321CE6821100E0A75A /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB668311CE6821100E0A75A /* CategoryCell.swift */; };
 		8EB668341CEA5AA500E0A75A /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB668331CEA5AA400E0A75A /* RecipeCell.swift */; };
 		8EB668361CEA5C7E00E0A75A /* RecipeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB668351CEA5C7E00E0A75A /* RecipeVC.swift */; };
-		8EB668381CEA669C00E0A75A /* MainUINavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB668371CEA669C00E0A75A /* MainUINavigationItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +59,6 @@
 		8EB668311CE6821100E0A75A /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		8EB668331CEA5AA400E0A75A /* RecipeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
 		8EB668351CEA5C7E00E0A75A /* RecipeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeVC.swift; sourceTree = "<group>"; };
-		8EB668371CEA669C00E0A75A /* MainUINavigationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainUINavigationItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,7 +153,6 @@
 				8E769E101CE59D3F0015139A /* LaunchScreen.storyboard */,
 				8EB668311CE6821100E0A75A /* CategoryCell.swift */,
 				8EB668331CEA5AA400E0A75A /* RecipeCell.swift */,
-				8EB668371CEA669C00E0A75A /* MainUINavigationItem.swift */,
 			);
 			name = VIEW;
 			sourceTree = "<group>";
@@ -316,7 +313,6 @@
 				8EB668341CEA5AA500E0A75A /* RecipeCell.swift in Sources */,
 				8EB6682A1CE6688500E0A75A /* Category.swift in Sources */,
 				8EB6682C1CE6697100E0A75A /* Recipe.swift in Sources */,
-				8EB668381CEA669C00E0A75A /* MainUINavigationItem.swift in Sources */,
 				8EB668321CE6821100E0A75A /* CategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -463,6 +459,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.LanceDouglas.Rutherfordium;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -474,6 +471,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.LanceDouglas.Rutherfordium;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

@@ -10,7 +10,7 @@ import UIKit
 
 class RecipeCell: UITableViewCell {
 	
-	@IBOutlet weak var recipeTitle: UITextField!
+	@IBOutlet weak var recipeTitle: UILabel!
 	@IBOutlet weak var recipeImage: UIImageView!
 	
 
