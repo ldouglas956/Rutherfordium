@@ -10,7 +10,7 @@ import UIKit
 
 class RecipeCell: UITableViewCell {
 	
-	@IBOutlet weak var recipeTitle: UILabel!
+	@IBOutlet weak var recipeName: UILabel!
 	@IBOutlet weak var recipeImage: UIImageView!
 	
 
@@ -23,5 +23,10 @@ class RecipeCell: UITableViewCell {
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+	
+	func configureCell(recipe: Recipe) {
+		recipeName.text = recipe.name
+		// ADD IMAGE
+	}
 
 }
