@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
 	
 	@IBOutlet weak var categoryPicker: UIPickerView!
 	@IBOutlet weak var nameField: UITextField!
@@ -18,8 +18,9 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 	@IBOutlet weak var linkField: UITextField!
 	@IBOutlet weak var ingredientsField: UITextView!
 	@IBOutlet weak var directionsField: UITextView!
-	// Outlet for button background
-	// Action for button imagePicker
+	@IBOutlet weak var saveButton: UIButton!
+	@IBOutlet weak var deleteButton: UIButton!
+	@IBOutlet weak var mealPhoto: UIImageView!
 	
 	var categories = [Category]()
 	var recipeToEdit: Recipe?
@@ -27,8 +28,7 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		categoryPicker.delegate = self
-		categoryPicker.dataSource = self
+		selfDelegates()
 		
 		getCategories()
 		if (categories.count == 0) {
@@ -39,9 +39,115 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 		if recipeToEdit != nil {
 			loadRecipeData()
 		}
+	}
+	
+	
+	func selfDelegates() {
+		nameField.delegate = self
+		timeField.delegate = self
+		servingsField.delegate = self
+		linkField.delegate = self
+		ingredientsField.delegate = self
+		directionsField.delegate = self
+		categoryPicker.delegate = self
+		categoryPicker.dataSource = self
 		
 	}
 	
+	// MARK: UITextFieldDelegate
+	func textFieldShouldReturn(textField: UITextField) -> Bool {
+		textField.resignFirstResponder()
+		return true
+	}
+	
+	func textFieldDidBeginEditing(textField: UITextField) {
+//		saveButton.enabled = false
+	}
+	
+	
+	// MARK: UITextViewDelegate
+	func textViewDidEndEditing(textView: UITextView) {
+		textView.resignFirstResponder()
+	}
+	
+	
+	// MARK: UIImagePickerControllerDelegate
+	@IBAction func selectImageFromPhotoLibrary(sender: UITapGestureRecognizer) {
+		let imagePickerController = UIImagePickerController()
+		imagePickerController.sourceType = .PhotoLibrary
+		imagePickerController.delegate = self
+		
+		presentViewController(imagePickerController, animated: true, completion: nil)
+	}
+	
+	func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+		dismissViewControllerAnimated(true, completion: nil)
+	}
+	
+	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+		let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+		mealPhoto.image = selectedImage
+		dismissViewControllerAnimated(true, completion: nil)
+	}
+	
+	
+	// MARK: UIPickerView
+	func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+		return 1
+	}
+	
+	func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+		return categories.count
+	}
+	
+	func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+		let category = categories[row]
+		return category.title
+	}
+	
+	func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+		print(row)
+	}
+	
+	
+	// MARK: CATEGORY PICKER CODE
+	func loadCategories() {
+		//		let category1 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
+		let category2 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
+		let category3 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
+		let category4 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
+		let category5 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
+		let category6 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
+		let category7 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
+		let category8 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
+		let category9 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
+		
+		//		category1.title = "All"
+		category2.title = "Breakfast"
+		category3.title = "Dessert"
+		category4.title = "Drinks"
+		category5.title = "Main Course"
+		category6.title = "Salad"
+		category7.title = "Sides"
+		category8.title = "Snacks"
+		category9.title = "Soup / Chili"
+		
+		ad.saveContext()
+	}
+	
+	func getCategories() {
+		let fetchRequest = NSFetchRequest(entityName: "Category")
+		
+		do {
+			self.categories = try ad.managedObjectContext.executeFetchRequest(fetchRequest) as! [Category]
+			self.categoryPicker.reloadAllComponents()
+		} catch {
+			print("\(error)")
+		}
+	}
+	
+	
+	// MARK: LOAD RECIPE DATA
 	func loadRecipeData() {
 		if let recipe = recipeToEdit {
 			
@@ -75,43 +181,6 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 					index += 1
 				} while (index < categories.count)
 			}
-		}
-	}
-	
-	
-	// MARK: CATEGORY PICKER CODE
-	func loadCategories() {
-//		let category1 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
-		let category2 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
-		let category3 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
-		let category4 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
-		let category5 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
-		let category6 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
-		let category7 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
-		let category8 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
-		let category9 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
-		
-//		category1.title = "All"
-		category2.title = "Breakfast"
-		category3.title = "Dessert"
-		category4.title = "Drinks"
-		category5.title = "Main Course"
-		category6.title = "Salad"
-		category7.title = "Sides"
-		category8.title = "Snacks"
-		category9.title = "Soup / Chili"
-			
-		ad.saveContext()
-	}
-	
-	func getCategories() {
-		let fetchRequest = NSFetchRequest(entityName: "Category")
-		
-		do {
-			self.categories = try ad.managedObjectContext.executeFetchRequest(fetchRequest) as! [Category]
-			self.categoryPicker.reloadAllComponents()
-		} catch {
-			print("\(error)")
 		}
 	}
 
@@ -149,6 +218,7 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 			recipe.category = categories[categoryPicker.selectedRowInComponent(0)]
 			
 			ad.saveContext()
+			self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
 			self.navigationController?.popViewControllerAnimated(true)
 		}
 	}
@@ -180,22 +250,14 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 	}
 	
 	
-	// MARK: PICKER VIEW BOILERPLATE
-	func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-		return 1
+	// MARK: NAVIGATION
+	@IBAction func cancel(sender: UIBarButtonItem) {
+		let isPresentedInAddMealMode = presentingViewController is UINavigationController
+		
+		if isPresentedInAddMealMode { // Modal, NavigationController
+			dismissViewControllerAnimated(true, completion: nil)
+		} else { // Show, Show details
+			navigationController!.popViewControllerAnimated(true)
+		}
 	}
-	
-	func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-		return categories.count
-	}
-	
-	func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-		let category = categories[row]
-		return category.title
-	}
-	
-	func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-		print(row)
-	}
-	
 }

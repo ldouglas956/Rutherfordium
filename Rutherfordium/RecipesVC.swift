@@ -24,8 +24,8 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 		attemptFetch()
 	}
 	
-	// MARK: CORE DATA BOILERPLATE CODE
 	
+	// MARK: CORE DATA BOILERPLATE CODE
 	func attemptFetch() {
 		setFetchedResults()
 		
@@ -113,29 +113,43 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 		return cell
 	}
 	
-//	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//		return 156
-//	}
-	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		
 		if let objs = fetchedResultsController.fetchedObjects where objs.count > 0 {
 			let item = objs[indexPath.row] as! Recipe
 			
-			performSegueWithIdentifier("ShowRecipeDetail", sender: item)
+			performSegueWithIdentifier("EditRecipe", sender: item)
 		}
 	}
 	
+//	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//		
+//		if let objs = fetchedResultsController.fetchedObjects where objs.count > 0 {
+//			let item = objs[indexPath.row] as! Recipe
+//			
+//			let vc = AddRecipeVC()
+//			vc.recipeToEdit = item
+//			
+//			navigationController?.pushViewController(vc, animated: true)
+//			
+////			performSegueWithIdentifier("EditRecipe", sender: item)
+//		}
+//	}
 	
-	// MARK: SEGUE
+	
+	// MARK: NAVIGATION
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if segue.identifier == "ShowRecipeDetail" {
+		if segue.identifier == "EditRecipe" {
+			print("Viewing / Editing Recipe")
 			let vc = segue.destinationViewController as! AddRecipeVC
 			vc.recipeToEdit = sender as? Recipe
+		} else if segue.identifier == "AddRecipe" {
+			print("Adding new Recipe")
 		}
-				let backItem = UIBarButtonItem()
-				backItem.title = "Cancel"
-				navigationItem.backBarButtonItem = backItem
+		
+//		let backItem = UIBarButtonItem()
+//		backItem.title = "Cancel"
+//		navigationItem.backBarButtonItem = backItem
 	}
 	
 	
