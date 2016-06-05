@@ -24,6 +24,9 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 		attemptFetch()
 	}
 	
+	override func viewDidAppear(animated: Bool) {
+		tableView.reloadData()
+	}
 	
 	// MARK: CORE DATA BOILERPLATE CODE
 	func attemptFetch() {

@@ -26,7 +26,7 @@ class RecipeCell: UITableViewCell {
 	
 	func configureCell(recipe: Recipe) {
 		recipeName.text = recipe.name
-		// ADD IMAGE
+		recipeImage.image = recipe.getRecipeImage()
 	}
 
 }

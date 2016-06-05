@@ -2,7 +2,7 @@
 //  Category+CoreDataProperties.swift
 //  Rutherfordium
 //
-//  Created by Lance Douglas on 5/20/16.
+//  Created by Lance Douglas on 6/4/16.
 //  Copyright © 2016 Lance Douglas. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu

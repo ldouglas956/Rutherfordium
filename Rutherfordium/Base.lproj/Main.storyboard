@@ -118,7 +118,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="119"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cooker" translatesAutoresizingMaskIntoConstraints="NO" id="LWq-v5-kIY">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cooker" translatesAutoresizingMaskIntoConstraints="NO" id="LWq-v5-kIY">
                                                     <rect key="frame" x="8" y="8" width="103" height="103"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="103" id="gsb-YS-HL8"/>

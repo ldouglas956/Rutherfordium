@@ -27,6 +27,7 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		configureImage()
 		
 		selfDelegates()
 		
@@ -41,7 +42,6 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 		}
 	}
 	
-	
 	func selfDelegates() {
 		nameField.delegate = self
 		timeField.delegate = self
@@ -51,7 +51,11 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 		directionsField.delegate = self
 		categoryPicker.delegate = self
 		categoryPicker.dataSource = self
-		
+	}
+	
+	// MARK: Configure View
+	func configureImage() {
+		mealPhoto.clipsToBounds = true
 	}
 	
 	// MARK: UITextFieldDelegate
@@ -169,6 +173,9 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 			if let directions = recipe.directions {
 				directionsField.text = directions
 			}
+			if let _ = recipe.photo {
+				mealPhoto.image = recipe.getRecipeImage()
+			}
 			
 			if let category = recipe.category {
 				var index = 0
@@ -183,7 +190,7 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 			}
 		}
 	}
-
+	
 	
 	// MARK: SAVE ITEM CODE
 	@IBAction func savePressed(sender: UIBarButtonItem) {
@@ -213,6 +220,9 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 			}
 			if let directions = directionsField.text {
 				recipe.directions = directions
+			}
+			if let photo = mealPhoto.image {
+				recipe.setRecipeImage(photo)
 			}
 			
 			recipe.category = categories[categoryPicker.selectedRowInComponent(0)]

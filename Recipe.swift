@@ -6,13 +6,20 @@
 //  Copyright © 2016 Lance Douglas. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CoreData
 
 
 class Recipe: Category {
 
-// Insert code here to add functionality to your managed object subclass
+	func setRecipeImage(img: UIImage) {
+		let data = UIImagePNGRepresentation(img)
+		self.photo = data
+	}
+	func getRecipeImage() -> UIImage {
+		let img = UIImage(data: self.photo!)
+		return img!
+	}
 
 }
 
