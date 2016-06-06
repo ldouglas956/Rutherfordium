@@ -10,9 +10,9 @@ import UIKit
 
 class CategoryCell: UITableViewCell {
 	
-	@IBOutlet weak var catTitle: UILabel!
-	@IBOutlet weak var catCount: UILabel!
-	@IBOutlet weak var catImage: UIImageView!
+	@IBOutlet private weak var catTitle: UILabel!
+	@IBOutlet private weak var catCount: UILabel!
+	@IBOutlet private weak var catImage: UIImageView!
 	
 	
     override func awakeFromNib() {
@@ -23,6 +23,10 @@ class CategoryCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 	
-	
+	func configureCell(category: Category) {
+		catTitle.text = category.title
+		catImage.image = category.getCatImage()
+		catCount.text = "0"
+	}
 
 }

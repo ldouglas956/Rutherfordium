@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
+class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate, UIScrollViewDelegate {
 	
 	@IBOutlet weak var categoryPicker: UIPickerView!
 	@IBOutlet weak var nameField: UITextField!
@@ -21,25 +21,32 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 	@IBOutlet weak var saveButton: UIButton!
 	@IBOutlet weak var deleteButton: UIButton!
 	@IBOutlet weak var mealPhoto: UIImageView!
+	@IBOutlet weak var scrollView: UIScrollView!
+	@IBOutlet weak var stackView: UIStackView!
+	
 	
 	var categories = [Category]()
 	var recipeToEdit: Recipe?
+	var keyboardMoveHeight: CGFloat = 0
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AddRecipeVC.keyboardWasShown(_:)), name: UIKeyboardDidShowNotification, object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AddRecipeVC.keyboardWasHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
+
+		selfDelegates()
 		configureImage()
 		
-		selfDelegates()
-		
 		getCategories()
-		if (categories.count == 0) {
-			loadCategories()
-			getCategories()
-		}
 		
 		if recipeToEdit != nil {
 			loadRecipeData()
 		}
+	}
+	
+	override func viewDidAppear(animated: Bool) {
+		configureScrollView()
 	}
 	
 	func selfDelegates() {
@@ -52,11 +59,45 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 		categoryPicker.delegate = self
 		categoryPicker.dataSource = self
 	}
+
 	
 	// MARK: Configure View
 	func configureImage() {
 		mealPhoto.clipsToBounds = true
 	}
+	
+	func configureScrollView() {
+		scrollView.contentSize.width = self.view.bounds.size.width
+		scrollView.contentSize.height = stackView.bounds.size.height + 20
+		scrollView.keyboardDismissMode = .Interactive
+	}
+	
+	// MARK: Keyboard Function
+	func keyboardWasShown(notification: NSNotification) {
+		var info = notification.userInfo!
+		let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+		
+		if directionsField.isFirstResponder() || linkField.isFirstResponder() {
+			keyboardMoveHeight = keyboardFrame.size.height
+		} else {
+			keyboardMoveHeight = 0
+		}
+
+		if self.view.frame.origin.y == 0.0 {
+			UIView.animateWithDuration(0.1, animations: { () -> Void in
+				self.view.frame.origin.y -= self.keyboardMoveHeight
+			})
+		}
+	}
+	
+	func keyboardWasHidden(notification: NSNotification) {
+		if self.view.frame.origin.y != 0.0 {
+			UIView.animateWithDuration(0.1, animations: { () -> Void in
+				self.view.frame.origin.y = 0.0
+			})
+		}
+	}
+	
 	
 	// MARK: UITextFieldDelegate
 	func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -115,35 +156,14 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 	
 	
 	// MARK: CATEGORY PICKER CODE
-	func loadCategories() {
-		//		let category1 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
-		let category2 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
-		let category3 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
-		let category4 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
-		let category5 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
-		let category6 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
-		let category7 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
-		let category8 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
-		let category9 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
-		
-		//		category1.title = "All"
-		category2.title = "Breakfast"
-		category3.title = "Dessert"
-		category4.title = "Drinks"
-		category5.title = "Main Course"
-		category6.title = "Salad"
-		category7.title = "Sides"
-		category8.title = "Snacks"
-		category9.title = "Soup / Chili"
-		
-		ad.saveContext()
-	}
+
 	
 	func getCategories() {
 		let fetchRequest = NSFetchRequest(entityName: "Category")
 		
 		do {
 			self.categories = try ad.managedObjectContext.executeFetchRequest(fetchRequest) as! [Category]
+			categories = categories.sort({ $0.title < $1.title })
 			self.categoryPicker.reloadAllComponents()
 		} catch {
 			print("\(error)")

@@ -15,6 +15,8 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 	
 	var fetchedResultsController: NSFetchedResultsController!
 	
+	var recipesOfCategory = [Recipe]()
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -22,6 +24,10 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 		tableView.dataSource = self
 		
 		attemptFetch()
+		if fetchedResultsController.fetchedObjects?.count == 0 {
+			generateTestData()
+			attemptFetch()
+		}
 	}
 	
 	override func viewDidAppear(animated: Bool) {
@@ -50,6 +56,7 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 		controller.delegate = self
 		fetchedResultsController = controller
 	}
+
 	
 	func controllerWillChangeContent(controller: NSFetchedResultsController) {
 		tableView.beginUpdates()
@@ -88,12 +95,6 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 	
 	
 	// MARK: TABLE VIEW BOILERPLATE CODE
-	func configureCell(cell: RecipeCell, indexPath: NSIndexPath) {
-		if let recipe = fetchedResultsController.objectAtIndexPath(indexPath) as? Recipe {
-			cell.configureCell(recipe)
-		}
-	}
-	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		if let sections = fetchedResultsController.sections {
 			return sections.count
@@ -116,6 +117,12 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 		return cell
 	}
 	
+	func configureCell(cell: RecipeCell, indexPath: NSIndexPath) {
+		if let recipe = fetchedResultsController.objectAtIndexPath(indexPath) as? Recipe {
+			cell.configureCell(recipe)
+		}
+	}
+	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		
 		if let objs = fetchedResultsController.fetchedObjects where objs.count > 0 {
@@ -125,20 +132,6 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 		}
 	}
 	
-//	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//		
-//		if let objs = fetchedResultsController.fetchedObjects where objs.count > 0 {
-//			let item = objs[indexPath.row] as! Recipe
-//			
-//			let vc = AddRecipeVC()
-//			vc.recipeToEdit = item
-//			
-//			navigationController?.pushViewController(vc, animated: true)
-//			
-////			performSegueWithIdentifier("EditRecipe", sender: item)
-//		}
-//	}
-	
 	
 	// MARK: NAVIGATION
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -147,12 +140,8 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 			let vc = segue.destinationViewController as! AddRecipeVC
 			vc.recipeToEdit = sender as? Recipe
 		} else if segue.identifier == "AddRecipe" {
-			print("Adding new Recipe")
+			print("Adding new Recipe from RecipesVC")
 		}
-		
-//		let backItem = UIBarButtonItem()
-//		backItem.title = "Cancel"
-//		navigationItem.backBarButtonItem = backItem
 	}
 	
 	
@@ -160,9 +149,11 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 	func generateTestData() {
 		let recipe1 = NSEntityDescription.insertNewObjectForEntityForName("Recipe", inManagedObjectContext: ad.managedObjectContext) as! Recipe
 		recipe1.name = "Bacon and Eggs"
+		recipe1.setRecipeImage(UIImage(named: "bacon")!)
 		
 		let recipe2 = NSEntityDescription.insertNewObjectForEntityForName("Recipe", inManagedObjectContext: ad.managedObjectContext) as! Recipe
-		recipe2.name = "Chicken Pot Pie"
+		recipe2.name = "Chocolate Heart Cookies"
+		recipe2.setRecipeImage(UIImage(named: "cookie")!)
 		
 		ad.saveContext()
 	}
