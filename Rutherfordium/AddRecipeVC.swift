@@ -11,6 +11,7 @@ import CoreData
 
 class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate, UIScrollViewDelegate {
 	
+	// MARK: Properties
 	@IBOutlet weak var categoryPicker: UIPickerView!
 	@IBOutlet weak var nameField: UITextField!
 	@IBOutlet weak var timeField: UITextField!
@@ -24,11 +25,13 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 	@IBOutlet weak var scrollView: UIScrollView!
 	@IBOutlet weak var stackView: UIStackView!
 	
-	
 	var categories = [Category]()
 	var recipeToEdit: Recipe?
 	var keyboardMoveHeight: CGFloat = 0
 	
+	
+	
+	// MARK: Load / Appear Functions
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -49,115 +52,9 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 		configureScrollView()
 	}
 	
-	func selfDelegates() {
-		nameField.delegate = self
-		timeField.delegate = self
-		servingsField.delegate = self
-		linkField.delegate = self
-		ingredientsField.delegate = self
-		directionsField.delegate = self
-		categoryPicker.delegate = self
-		categoryPicker.dataSource = self
-	}
-
-	
-	// MARK: Configure View
-	func configureImage() {
-		mealPhoto.clipsToBounds = true
-	}
-	
-	func configureScrollView() {
-		scrollView.contentSize.width = self.view.bounds.size.width
-		scrollView.contentSize.height = stackView.bounds.size.height + 20
-		scrollView.keyboardDismissMode = .Interactive
-	}
-	
-	// MARK: Keyboard Function
-	func keyboardWasShown(notification: NSNotification) {
-		var info = notification.userInfo!
-		let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
-		
-		if directionsField.isFirstResponder() || linkField.isFirstResponder() {
-			keyboardMoveHeight = keyboardFrame.size.height
-		} else {
-			keyboardMoveHeight = 0
-		}
-
-		if self.view.frame.origin.y == 0.0 {
-			UIView.animateWithDuration(0.1, animations: { () -> Void in
-				self.view.frame.origin.y -= self.keyboardMoveHeight
-			})
-		}
-	}
-	
-	func keyboardWasHidden(notification: NSNotification) {
-		if self.view.frame.origin.y != 0.0 {
-			UIView.animateWithDuration(0.1, animations: { () -> Void in
-				self.view.frame.origin.y = 0.0
-			})
-		}
-	}
 	
 	
-	// MARK: UITextFieldDelegate
-	func textFieldShouldReturn(textField: UITextField) -> Bool {
-		textField.resignFirstResponder()
-		return true
-	}
-	
-	func textFieldDidBeginEditing(textField: UITextField) {
-//		saveButton.enabled = false
-	}
-	
-	
-	// MARK: UITextViewDelegate
-	func textViewDidEndEditing(textView: UITextView) {
-		textView.resignFirstResponder()
-	}
-	
-	
-	// MARK: UIImagePickerControllerDelegate
-	@IBAction func selectImageFromPhotoLibrary(sender: UITapGestureRecognizer) {
-		let imagePickerController = UIImagePickerController()
-		imagePickerController.sourceType = .PhotoLibrary
-		imagePickerController.delegate = self
-		
-		presentViewController(imagePickerController, animated: true, completion: nil)
-	}
-	
-	func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-		dismissViewControllerAnimated(true, completion: nil)
-	}
-	
-	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-		let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-		mealPhoto.image = selectedImage
-		dismissViewControllerAnimated(true, completion: nil)
-	}
-	
-	
-	// MARK: UIPickerView
-	func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-		return 1
-	}
-	
-	func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-		return categories.count
-	}
-	
-	func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-		let category = categories[row]
-		return category.title
-	}
-	
-	func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-		print(row)
-	}
-	
-	
-	// MARK: CATEGORY PICKER CODE
-
-	
+	// MARK: Core Data Fetch
 	func getCategories() {
 		let fetchRequest = NSFetchRequest(entityName: "Category")
 		
@@ -170,8 +67,6 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 		}
 	}
 	
-	
-	// MARK: LOAD RECIPE DATA
 	func loadRecipeData() {
 		if let recipe = recipeToEdit {
 			
@@ -212,7 +107,111 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 	}
 	
 	
-	// MARK: SAVE ITEM CODE
+	
+	// MARK: Delegates / UI Components
+	func selfDelegates() {
+		nameField.delegate = self
+		timeField.delegate = self
+		servingsField.delegate = self
+		linkField.delegate = self
+		ingredientsField.delegate = self
+		directionsField.delegate = self
+		categoryPicker.delegate = self
+		categoryPicker.dataSource = self
+	}
+	
+	// UIImage
+	func configureImage() {
+		mealPhoto.clipsToBounds = true
+	}
+	
+	// UIScrolLView
+	func configureScrollView() {
+		scrollView.contentSize.width = self.view.bounds.size.width
+		scrollView.contentSize.height = stackView.bounds.size.height + 20
+		scrollView.keyboardDismissMode = .Interactive
+	}
+	
+	// UITextField
+	func textFieldShouldReturn(textField: UITextField) -> Bool {
+		textField.resignFirstResponder()
+		return true
+	}
+	func textFieldDidBeginEditing(textField: UITextField) {
+		//		saveButton.enabled = false
+	}
+	
+	// UITextView
+	func textViewDidEndEditing(textView: UITextView) {
+		textView.resignFirstResponder()
+	}
+	
+	// UIImagePickerControllerDelegate
+	@IBAction func selectImageFromPhotoLibrary(sender: UITapGestureRecognizer) {
+		let imagePickerController = UIImagePickerController()
+		imagePickerController.sourceType = .PhotoLibrary
+		imagePickerController.delegate = self
+		
+		presentViewController(imagePickerController, animated: true, completion: nil)
+	}
+	
+	func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+		dismissViewControllerAnimated(true, completion: nil)
+	}
+	
+	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+		let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+		mealPhoto.image = selectedImage
+		dismissViewControllerAnimated(true, completion: nil)
+	}
+	
+	// UIPickerView
+	func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+		return 1
+	}
+	
+	func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+		return categories.count
+	}
+	
+	func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+		let category = categories[row]
+		return category.title
+	}
+	
+	func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+		print(row)
+	}
+	
+	// Keyboard Function
+	func keyboardWasShown(notification: NSNotification) {
+		var info = notification.userInfo!
+		let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+		
+		if directionsField.isFirstResponder() || linkField.isFirstResponder() {
+			keyboardMoveHeight = keyboardFrame.size.height
+		} else {
+			keyboardMoveHeight = 0
+		}
+		
+		if self.view.frame.origin.y == 0.0 {
+			UIView.animateWithDuration(0.1, animations: { () -> Void in
+				self.view.frame.origin.y -= self.keyboardMoveHeight
+			})
+		}
+	}
+	
+	func keyboardWasHidden(notification: NSNotification) {
+		if self.view.frame.origin.y != 0.0 {
+			UIView.animateWithDuration(0.1, animations: { () -> Void in
+				self.view.frame.origin.y = 0.0
+			})
+		}
+	}
+	
+	
+	
+	// MARK: Save Button
 	@IBAction func savePressed(sender: UIBarButtonItem) {
 		var recipe: Recipe!
 		
@@ -254,7 +253,7 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 	}
 	
 	
-	// MARK: DELETE ITEM CODE
+	// MARK: Delete Button
 	@IBAction func deletePressed(sender: UIButton) {
 		if recipeToEdit != nil {
 			areYouSureAlert()
@@ -290,4 +289,7 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 			navigationController!.popViewControllerAnimated(true)
 		}
 	}
+	
 }
+
+

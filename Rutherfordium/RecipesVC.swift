@@ -11,23 +11,34 @@ import CoreData
 
 class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
 	
+	// MARK: Properties
 	@IBOutlet weak var tableView: UITableView!
 	
-	var fetchedResultsController: NSFetchedResultsController!
+	var fetchedRecipeController: NSFetchedResultsController!
+	var fetchedCategoryController: NSFetchedResultsController!
 	
 	var recipesOfCategory = [Recipe]()
 	var allCategories = [Category]()
+	var sampleRecipes = SampleRecipes()
 	
+	
+	
+	// MARK: Load / Appear Functions
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		tableView.delegate = self
 		tableView.dataSource = self
 		
-		attemptFetch()
-		if fetchedResultsController.fetchedObjects?.count == 0 {
-			generateTestData()
-			attemptFetch()
+		deleteAllRecipes()
+		
+		attemptCategoryFetch()
+		
+		attemptRecipeFetch()
+		if fetchedRecipeController.fetchedObjects?.count == 0 {
+			sampleRecipes.generateTestData(allCategories)
+//			generateTestData()
+			attemptRecipeFetch()
 		}
 	}
 	
@@ -36,18 +47,37 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 	}
 	
 	
-	// MARK: CORE DATA BOILERPLATE CODE
-	func attemptFetch() {
+	
+	// MARK: Core Data Fetch
+	func attemptRecipeFetch() {
 		let fetchRecipeRequest = NSFetchRequest(entityName: "Recipe")
 		let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
 		fetchRecipeRequest.sortDescriptors = [sortDescriptor]
 		
 		let controller = NSFetchedResultsController(fetchRequest: fetchRecipeRequest, managedObjectContext: ad.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-		controller.delegate = self
-		fetchedResultsController = controller
+//		controller.delegate = self
+		fetchedRecipeController = controller
 		
 		do {
-			try self.fetchedResultsController.performFetch()
+			try self.fetchedRecipeController.performFetch()
+		} catch {
+			let error = error as NSError
+			print("\(error), \(error.userInfo)")
+		}
+	}
+	
+	func attemptCategoryFetch() {
+		let fetchCategoryRequest = NSFetchRequest(entityName: "Category")
+		let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+		fetchCategoryRequest.sortDescriptors = [sortDescriptor]
+		
+		let controller = NSFetchedResultsController(fetchRequest: fetchCategoryRequest, managedObjectContext: ad.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+//		controller.delegate = self
+		fetchedCategoryController = controller
+		
+		do {
+			try self.fetchedCategoryController.performFetch()
+			allCategories = fetchedCategoryController.fetchedObjects as! [Category]
 		} catch {
 			let error = error as NSError
 			print("\(error), \(error.userInfo)")
@@ -55,6 +85,8 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 	}
 
 	
+	
+	// MARK: NSFetchedResultsController Code
 	func controllerWillChangeContent(controller: NSFetchedResultsController) {
 		tableView.beginUpdates()
 	}
@@ -91,16 +123,17 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 	}
 	
 	
-	// MARK: TABLE VIEW BOILERPLATE CODE
+	
+	// MARK: UITableView Code
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-		if let sections = fetchedResultsController.sections {
+		if let sections = fetchedRecipeController.sections {
 			return sections.count
 		}
 		return 0
 	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if let sections = fetchedResultsController.sections {
+		if let sections = fetchedRecipeController.sections {
 			let sectionInfo = sections[section]
 			return sectionInfo.numberOfObjects
 		}
@@ -115,19 +148,20 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 	}
 	
 	func configureCell(cell: RecipeCell, indexPath: NSIndexPath) {
-		if let recipe = fetchedResultsController.objectAtIndexPath(indexPath) as? Recipe {
+		if let recipe = fetchedRecipeController.objectAtIndexPath(indexPath) as? Recipe {
 			cell.configureCell(recipe)
 		}
 	}
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		
-		if let objs = fetchedResultsController.fetchedObjects where objs.count > 0 {
+		if let objs = fetchedRecipeController.fetchedObjects where objs.count > 0 {
 			let item = objs[indexPath.row] as! Recipe
 			
 			performSegueWithIdentifier("EditRecipe", sender: item)
 		}
 	}
+	
 	
 	
 	// MARK: NAVIGATION
@@ -142,19 +176,22 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 	}
 	
 	
-	// MARK: TEST DATA
-	func generateTestData() {
-		let recipe1 = NSEntityDescription.insertNewObjectForEntityForName("Recipe", inManagedObjectContext: ad.managedObjectContext) as! Recipe
-		recipe1.name = "Bacon and Eggs"
-		recipe1.setRecipeImage(UIImage(named: "bacon")!)
-		
-		let recipe2 = NSEntityDescription.insertNewObjectForEntityForName("Recipe", inManagedObjectContext: ad.managedObjectContext) as! Recipe
-		recipe2.name = "Chocolate Heart Cookies"
-		recipe2.setRecipeImage(UIImage(named: "cookie")!)
-		
-		ad.saveContext()
-	}
 	
+	// MARK: Additional Functions
+	func deleteAllRecipes() {
+		let context = ad.managedObjectContext
+		let coord = ad.persistentStoreCoordinator
+		
+		let fetchRequest = NSFetchRequest(entityName: "Recipe")
+		let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+		
+		do {
+			try coord.executeRequest(deleteRequest, withContext: context)
+		} catch let error as NSError {
+			debugPrint(error)
+		}
+	}
 
 }
+
 
