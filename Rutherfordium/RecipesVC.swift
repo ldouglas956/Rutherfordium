@@ -16,6 +16,7 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 	var fetchedResultsController: NSFetchedResultsController!
 	
 	var recipesOfCategory = [Recipe]()
+	var allCategories = [Category]()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -34,9 +35,16 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 		tableView.reloadData()
 	}
 	
+	
 	// MARK: CORE DATA BOILERPLATE CODE
 	func attemptFetch() {
-		setFetchedResults()
+		let fetchRecipeRequest = NSFetchRequest(entityName: "Recipe")
+		let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+		fetchRecipeRequest.sortDescriptors = [sortDescriptor]
+		
+		let controller = NSFetchedResultsController(fetchRequest: fetchRecipeRequest, managedObjectContext: ad.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+		controller.delegate = self
+		fetchedResultsController = controller
 		
 		do {
 			try self.fetchedResultsController.performFetch()
@@ -44,17 +52,6 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 			let error = error as NSError
 			print("\(error), \(error.userInfo)")
 		}
-	}
-	
-	func setFetchedResults() {
-//		let section: String? = segment.selectedSegmentIndex == 1 ? "category.title" : nil // from generated Item and Store relationship
-		let fetchRequest = NSFetchRequest(entityName: "Recipe")
-		let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
-		fetchRequest.sortDescriptors = [sortDescriptor]
-		
-		let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: ad.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-		controller.delegate = self
-		fetchedResultsController = controller
 	}
 
 	
