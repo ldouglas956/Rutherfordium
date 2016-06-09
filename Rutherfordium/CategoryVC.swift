@@ -16,7 +16,10 @@ class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	
 	var fetchedResultsController: NSFetchedResultsController!
 	var categories = Categories()
+	var allCategories = [Category]()
+	var sampleRecipes = SampleRecipes()
 	
+	var categorySelectionIndex: Int?
 	
 	
 	// MARK: Load / Appear Functions
@@ -30,8 +33,13 @@ class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 		if fetchedResultsController.fetchedObjects?.count == 0 {
 			categories.initializeCategories()
 			fetchCategories()
+			sampleRecipes.generateTestData(allCategories)
 		}
     }
+	
+	override func viewDidAppear(animated: Bool) {
+		tableView.reloadData()
+	}
 	
 	
 	
@@ -42,11 +50,11 @@ class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 		fetchRequest.sortDescriptors = [sortDescriptor]
 		
 		let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: ad.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-//		controller.delegate = self
 		fetchedResultsController = controller
 		
 		do {
 			try self.fetchedResultsController.performFetch()
+			allCategories = fetchedResultsController.fetchedObjects as! [Category]
 		} catch {
 			let error = error as NSError
 			print("\(error), \(error.userInfo)")
@@ -79,14 +87,15 @@ class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 		return CategoryCell()
 	}
 
-//	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//
-//		if let objs = fetchedResultsController.fetchedObjects where objs.count > 0 {
-//			let item = objs[indexPath.row] as! Category
-//
-//			performSegueWithIdentifier("ListRecipes", sender: item)
-//		}
-//	}
+	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+		if let objs = fetchedResultsController.fetchedObjects where objs.count > 0 {
+			let item = objs[indexPath.row] as! Category
+			categorySelectionIndex = indexPath.row
+
+			performSegueWithIdentifier("ListRecipes", sender: item)
+		}
+	}
 	
 	
 	
@@ -94,15 +103,10 @@ class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "ListRecipes" {
 			print("Viewing List of Recipes")
-//			let vc = segue.destinationViewController as! RecipesVC
-			
-			// Information to send is an array of Recipes with a given category
-			
-			
+			let vc = segue.destinationViewController as! RecipesVC
+			vc.index = categorySelectionIndex
 		} else if segue.identifier == "AddRecipe" {
 			print("Adding new Recipe from CategoryVC")
-		} else if segue.identifier == "ShowRecipesVC" {
-			print("Showing RecipesVC with Shortcut")
 		}
 	}
 	

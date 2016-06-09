@@ -27,6 +27,7 @@ class RecipeCell: UITableViewCell {
 	func configureCell(recipe: Recipe) {
 		recipeName.text = recipe.name
 		recipeImage.image = recipe.getRecipeImage()
+		recipeImage.image = recipeImage.image?.correctlyOrientedImage()
 	}
 
 }

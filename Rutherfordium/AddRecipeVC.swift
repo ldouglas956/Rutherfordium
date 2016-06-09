@@ -148,6 +148,47 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 	
 	// UIImagePickerControllerDelegate
 	@IBAction func selectImageFromPhotoLibrary(sender: UITapGestureRecognizer) {
+		
+		let alertController = UIAlertController(title: nil, message: "Test", preferredStyle: .ActionSheet)
+		
+		let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+			self.dismissViewControllerAnimated(true, completion: nil)
+		}
+		
+//		let viewAction = UIAlertAction(title: "View Image", style: .Default) { (action) in
+//			self.performSegueWithIdentifier("ViewImage", sender: self)
+//		}
+		
+		let libraryAction = UIAlertAction(title: "Pick from Library", style: .Default) { (action) in
+			self.pickImageFromLibrary()
+		}
+		
+		let takePhotoAction = UIAlertAction(title: "Take Photo", style: .Default) { (action) in
+			self.takePhoto()
+		}
+		
+		alertController.addAction(cancelAction)
+//		alertController.addAction(viewAction)
+		alertController.addAction(libraryAction)
+		alertController.addAction(takePhotoAction)
+		
+		self.presentViewController(alertController, animated: true, completion: nil)
+		
+		
+		// Implement UIActionController for view image, take image, or pick from library
+		
+//		pickImageFromLibrary()
+	}
+	
+	func takePhoto() {
+		let imagePickerController = UIImagePickerController()
+		imagePickerController.sourceType = .Camera
+		imagePickerController.delegate = self
+		
+		presentViewController(imagePickerController, animated: true, completion: nil)
+	}
+	
+	func pickImageFromLibrary() {
 		let imagePickerController = UIImagePickerController()
 		imagePickerController.sourceType = .PhotoLibrary
 		imagePickerController.delegate = self
@@ -279,6 +320,7 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 	}
 	
 	
+	
 	// MARK: NAVIGATION
 	@IBAction func cancel(sender: UIBarButtonItem) {
 		let isPresentedInAddMealMode = presentingViewController is UINavigationController
@@ -287,6 +329,16 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 			dismissViewControllerAnimated(true, completion: nil)
 		} else { // Show, Show details
 			navigationController!.popViewControllerAnimated(true)
+		}
+	}
+	
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if segue.identifier == "EditRecipe" {
+			print("Viewing / Editing Recipe")
+			let vc = segue.destinationViewController as! AddRecipeVC
+			vc.recipeToEdit = sender as? Recipe
+		} else if segue.identifier == "AddRecipe" {
+			print("Adding new Recipe from RecipesVC")
 		}
 	}
 	

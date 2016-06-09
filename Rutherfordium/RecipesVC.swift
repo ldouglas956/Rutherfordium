@@ -17,9 +17,12 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 	var fetchedRecipeController: NSFetchedResultsController!
 	var fetchedCategoryController: NSFetchedResultsController!
 	
-	var recipesOfCategory = [Recipe]()
-	var allCategories = [Category]()
 	var sampleRecipes = SampleRecipes()
+	var allCategories = [Category]()
+	var recipesOfCategory = [Recipe]()
+	
+	var selectedCategory: Category?
+	var index: Int?
 	
 	
 	
@@ -30,16 +33,21 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 		tableView.delegate = self
 		tableView.dataSource = self
 		
-		deleteAllRecipes()
+//		deleteAllRecipes()
 		
 		attemptCategoryFetch()
+		selectedCategory = allCategories[index!]
+		
 		
 		attemptRecipeFetch()
 		if fetchedRecipeController.fetchedObjects?.count == 0 {
-			sampleRecipes.generateTestData(allCategories)
-//			generateTestData()
 			attemptRecipeFetch()
 		}
+		
+//		print(selectedCategory)
+//		print(recipesOfCategory)
+		print()
+		
 	}
 	
 	override func viewDidAppear(animated: Bool) {
@@ -54,12 +62,15 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 		let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
 		fetchRecipeRequest.sortDescriptors = [sortDescriptor]
 		
+//		let count = ad.managedObjectContext.countForFetchRequest(fetchRecipeRequest, error: nil)
+		
 		let controller = NSFetchedResultsController(fetchRequest: fetchRecipeRequest, managedObjectContext: ad.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-//		controller.delegate = self
 		fetchedRecipeController = controller
 		
 		do {
 			try self.fetchedRecipeController.performFetch()
+			let allRecipes = fetchedRecipeController.fetchedObjects as! [Recipe]
+			recipesOfCategory = allRecipes.filter { NSPredicate(format: "category = %@", selectedCategory!).evaluateWithObject($0) }
 		} catch {
 			let error = error as NSError
 			print("\(error), \(error.userInfo)")
@@ -72,7 +83,6 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 		fetchCategoryRequest.sortDescriptors = [sortDescriptor]
 		
 		let controller = NSFetchedResultsController(fetchRequest: fetchCategoryRequest, managedObjectContext: ad.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-//		controller.delegate = self
 		fetchedCategoryController = controller
 		
 		do {
@@ -126,18 +136,11 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 	
 	// MARK: UITableView Code
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-		if let sections = fetchedRecipeController.sections {
-			return sections.count
-		}
-		return 0
+		return 1
 	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if let sections = fetchedRecipeController.sections {
-			let sectionInfo = sections[section]
-			return sectionInfo.numberOfObjects
-		}
-		return 0
+		return recipesOfCategory.count
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -148,19 +151,71 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 	}
 	
 	func configureCell(cell: RecipeCell, indexPath: NSIndexPath) {
-		if let recipe = fetchedRecipeController.objectAtIndexPath(indexPath) as? Recipe {
-			cell.configureCell(recipe)
-		}
+		cell.configureCell(recipesOfCategory[indexPath.row])
 	}
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		let item = recipesOfCategory[indexPath.row]
 		
-		if let objs = fetchedRecipeController.fetchedObjects where objs.count > 0 {
-			let item = objs[indexPath.row] as! Recipe
-			
-			performSegueWithIdentifier("EditRecipe", sender: item)
+		performSegueWithIdentifier("EditRecipe", sender: item)
+	}
+	
+	func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+		return true
+	}
+	
+	func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+		if editingStyle == .Delete {
+			recipesOfCategory.removeAtIndex(indexPath.row)
+			tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+			ad.managedObjectContext.delete(recipesOfCategory[indexPath.row])
 		}
 	}
+	
+	func areYouSureAlert() {
+		let alertController = UIAlertController(title: "Delete?", message: "", preferredStyle: .Alert)
+
+		let firstAction = UIAlertAction(title: "Keep It", style: UIAlertActionStyle.Default, handler: nil)
+		let secondAction = UIAlertAction(title: "Delete It", style: UIAlertActionStyle.Destructive, handler: { action in
+//			self.deleteItem()
+		} )
+		
+		alertController.addAction(firstAction)
+		alertController.addAction(secondAction)
+		self.presentViewController(alertController, animated: true, completion: {})
+	}
+	
+	func deleteItem() {
+//		ad.managedObjectContext.deleteObject(sender)
+		ad.saveContext()
+	}
+	
+	
+	
+//	// MARK: Delete Button
+//	@IBAction func deletePressed(sender: UIButton) {
+//		if recipeToEdit != nil {
+//			areYouSureAlert()
+//		}
+//	}
+//	
+//	func areYouSureAlert() {
+//		let alertController = UIAlertController(title: "Delete?", message: "", preferredStyle: .Alert)
+//		
+//		let firstAction = UIAlertAction(title: "Keep It", style: UIAlertActionStyle.Default, handler: nil)
+//		let secondAction = UIAlertAction(title: "Delete It", style: UIAlertActionStyle.Destructive, handler: { action in
+//			self.deleteItem()
+//			self.navigationController?.popViewControllerAnimated(true) } )
+//		
+//		alertController.addAction(firstAction)
+//		alertController.addAction(secondAction)
+//		self.presentViewController(alertController, animated: true, completion: {})
+//	}
+//	
+//	func deleteItem() {
+//		ad.managedObjectContext.deleteObject(recipeToEdit!)
+//		ad.saveContext()
+//	}
 	
 	
 	
