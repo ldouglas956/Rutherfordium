@@ -15,6 +15,7 @@ class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	@IBOutlet weak var tableView: UITableView!
 	
 	var fetchedResultsController: NSFetchedResultsController!
+	var customUINavController: CustomUINavController!
 	var categories = Categories()
 	var allCategories = [Category]()
 	var sampleRecipes = SampleRecipes()
@@ -25,6 +26,14 @@ class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	// MARK: Load / Appear Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+//		self.navigationBar.backgroundColor = UIColor.lightGrayColor()
+//		self.navigationItem.titleView = UIImageView(image: UIImage(named: "Home-Recipes"))
+		
+		let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 38, height: 38))
+		imageView.contentMode = .ScaleAspectFit
+		imageView.image = UIImage(named: "Home-Recipes")
+		navigationItem.titleView = imageView
 		
 		tableView.delegate = self
 		tableView.dataSource = self
@@ -39,6 +48,19 @@ class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	
 	override func viewDidAppear(animated: Bool) {
 		tableView.reloadData()
+	}
+	
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+	}
+	
+	
+	
+	// MARK: Welcome Alert
+	func welcomeAlert() {
+		
+		
+		
 	}
 	
 	
@@ -96,11 +118,10 @@ class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	// MARK: NAVIGATION
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "ListRecipes" {
-			print("Viewing List of Recipes")
 			let vc = segue.destinationViewController as! RecipesVC
 			vc.index = categorySelectionIndex
 		} else if segue.identifier == "AddRecipe" {
-			print("Adding new Recipe from CategoryVC")
+			
 		}
 	}
 	

@@ -26,7 +26,7 @@ class CategoryCell: UITableViewCell {
 	func configureCell(category: Category) {
 		catTitle.text = category.title
 		catImage.image = category.getCatImage()
-		catCount.text = "0"
+		catCount.text = ""
 	}
 
 }

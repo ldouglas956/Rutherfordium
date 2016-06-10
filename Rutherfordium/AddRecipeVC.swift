@@ -295,15 +295,7 @@ class AddRecipeVC: UIViewController, UINavigationControllerDelegate, UIPickerVie
 		}
 	}
 	
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if segue.identifier == "EditRecipe" {
-			print("Viewing / Editing Recipe")
-			let vc = segue.destinationViewController as! AddRecipeVC
-			vc.recipeToEdit = sender as? Recipe
-		} else if segue.identifier == "AddRecipe" {
-			print("Adding new Recipe from RecipesVC")
-		}
-	}
+
 	
 }
 
