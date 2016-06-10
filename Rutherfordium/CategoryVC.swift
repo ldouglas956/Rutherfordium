@@ -64,18 +64,12 @@ class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	
 	
 	// MARK: TableView Code
-//	func configureCell(cell: CategoryCell, indexPath: NSIndexPath) {
-//		if let category = fetchedResultsController.objectAtIndexPath(indexPath) as? Category {
-//			cell.configureCell(category)
-//		}
-//	}
-	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return 1
 	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 8
+		return 9
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

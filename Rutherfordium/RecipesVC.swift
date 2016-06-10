@@ -23,6 +23,7 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 	
 	var selectedCategory: Category?
 	var index: Int?
+	var deleteIndex: Int?
 	
 	
 	
@@ -44,13 +45,11 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 			attemptRecipeFetch()
 		}
 		
-//		print(selectedCategory)
-//		print(recipesOfCategory)
-		print()
-		
 	}
 	
 	override func viewDidAppear(animated: Bool) {
+		super.viewWillAppear(true)
+		
 		tableView.reloadData()
 	}
 	
@@ -102,6 +101,7 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 	}
 	
 	func controllerDidChangeContent(controller: NSFetchedResultsController) {
+		tableView.reloadData()
 		tableView.endUpdates()
 	}
 	
@@ -128,6 +128,23 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 			if let newIndexPath = newIndexPath {
 				tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
 			}; break
+		}
+	}
+	
+	func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+		switch(type) {
+		case .Insert:
+			let sectionIndexSet = NSIndexSet(index: sectionIndex)
+			self.tableView.insertSections(sectionIndexSet, withRowAnimation: UITableViewRowAnimation.Fade)
+			self.tableView.reloadSections(sectionIndexSet, withRowAnimation: .Automatic)
+		case .Delete:
+			let sectionIndexSet = NSIndexSet(index: sectionIndex)
+			self.tableView.deleteSections(sectionIndexSet, withRowAnimation: UITableViewRowAnimation.Fade)
+		case .Update:
+			let sectionIndexSet = NSIndexSet(index: sectionIndex)
+			self.tableView.reloadSections(sectionIndexSet, withRowAnimation: .Automatic)
+		default:
+			""
 		}
 		
 	}
@@ -165,57 +182,31 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 	}
 	
 	func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-		if editingStyle == .Delete {
-			recipesOfCategory.removeAtIndex(indexPath.row)
-			tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-			ad.managedObjectContext.delete(recipesOfCategory[indexPath.row])
-		}
+		deleteIndex = indexPath.row
+		areYouSureAlert()
 	}
 	
 	func areYouSureAlert() {
-		let alertController = UIAlertController(title: "Delete?", message: "", preferredStyle: .Alert)
+		let alertController = UIAlertController(title: "Delete this recipe?", message: "", preferredStyle: .Alert)
 
-		let firstAction = UIAlertAction(title: "Keep It", style: UIAlertActionStyle.Default, handler: nil)
+		let firstAction = UIAlertAction(title: "Oops, Keep It", style: UIAlertActionStyle.Default, handler: nil)
 		let secondAction = UIAlertAction(title: "Delete It", style: UIAlertActionStyle.Destructive, handler: { action in
-//			self.deleteItem()
+			let context = ad.managedObjectContext
+			context.deleteObject(self.recipesOfCategory[self.deleteIndex!])
+			
+			self.recipesOfCategory.removeAtIndex(self.deleteIndex!)
+			do {
+				try context.save()
+			} catch {
+				print("Error: Unable to save Deletion")
+			}
+			self.tableView.reloadData()
 		} )
 		
 		alertController.addAction(firstAction)
 		alertController.addAction(secondAction)
 		self.presentViewController(alertController, animated: true, completion: {})
 	}
-	
-	func deleteItem() {
-//		ad.managedObjectContext.deleteObject(sender)
-		ad.saveContext()
-	}
-	
-	
-	
-//	// MARK: Delete Button
-//	@IBAction func deletePressed(sender: UIButton) {
-//		if recipeToEdit != nil {
-//			areYouSureAlert()
-//		}
-//	}
-//	
-//	func areYouSureAlert() {
-//		let alertController = UIAlertController(title: "Delete?", message: "", preferredStyle: .Alert)
-//		
-//		let firstAction = UIAlertAction(title: "Keep It", style: UIAlertActionStyle.Default, handler: nil)
-//		let secondAction = UIAlertAction(title: "Delete It", style: UIAlertActionStyle.Destructive, handler: { action in
-//			self.deleteItem()
-//			self.navigationController?.popViewControllerAnimated(true) } )
-//		
-//		alertController.addAction(firstAction)
-//		alertController.addAction(secondAction)
-//		self.presentViewController(alertController, animated: true, completion: {})
-//	}
-//	
-//	func deleteItem() {
-//		ad.managedObjectContext.deleteObject(recipeToEdit!)
-//		ad.saveContext()
-//	}
 	
 	
 	

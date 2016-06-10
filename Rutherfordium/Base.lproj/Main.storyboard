@@ -40,7 +40,7 @@
                                                         <constraint firstAttribute="height" constant="45" id="tII-HY-YqN"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="22"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TcF-N5-uyi">
@@ -49,7 +49,7 @@
                                                         <constraint firstAttribute="height" constant="45" id="OZn-Qu-jZQ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HiraMinProN-W6" family="Hiragino Mincho ProN" pointSize="30"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -264,7 +264,7 @@
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" keyboardDismissMode="interactive" text="Ingredients" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="z8V-cM-0uU">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" pagingEnabled="YES" keyboardDismissMode="onDrag" text="Ingredients" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="z8V-cM-0uU">
                                                 <rect key="frame" x="0.0" y="248" width="600" height="203"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -278,38 +278,20 @@
                                                     </mask>
                                                 </variation>
                                             </textView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" text="Directions" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OwH-R0-DqE">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" keyboardDismissMode="onDrag" text="Directions" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OwH-R0-DqE">
                                                 <rect key="frame" x="0.0" y="459" width="600" height="203"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                                             </textView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1Hf-Oe-Pue">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Link to Online Recipe" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xdh-Gq-cll">
                                                 <rect key="frame" x="0.0" y="670" width="600" height="30"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aCE-A6-dgY">
-                                                        <rect key="frame" x="0.0" y="0.0" width="70" height="30"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="70" id="LVQ-JL-0fA"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="15"/>
-                                                        <state key="normal" title="DELETE">
-                                                            <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="deletePressed:" destination="8I4-yb-Stk" eventType="touchUpInside" id="LRn-4l-c0X"/>
-                                                        </connections>
-                                                    </button>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Link to Online Recipe" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xdh-Gq-cll">
-                                                        <rect key="frame" x="78" y="0.0" width="522" height="30"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="30" id="Gey-2A-4mG"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                                                    </textField>
-                                                </subviews>
-                                            </stackView>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="Gey-2A-4mG"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                            </textField>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="OwH-R0-DqE" firstAttribute="height" secondItem="z8V-cM-0uU" secondAttribute="height" id="461-6r-pel"/>
@@ -350,7 +332,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="categoryPicker" destination="sUQ-Cu-blA" id="S6o-zJ-JDK"/>
-                        <outlet property="deleteButton" destination="aCE-A6-dgY" id="3E6-5C-hqg"/>
                         <outlet property="directionsField" destination="OwH-R0-DqE" id="dgk-ZT-FyA"/>
                         <outlet property="ingredientsField" destination="z8V-cM-0uU" id="D00-b3-V2c"/>
                         <outlet property="linkField" destination="Xdh-Gq-cll" id="VmR-8X-5oE"/>
@@ -371,10 +352,10 @@
             </objects>
             <point key="canvasLocation" x="2103" y="1194"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Nav Controller-->
         <scene sceneID="B1F-lr-BgY">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BUN-xw-STO" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BUN-xw-STO" customClass="UINavController" customModule="Rutherfordium" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4J0-lq-J5W">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -431,8 +412,8 @@
         <image name="cooker" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VGm-6H-xLG"/>
-        <segue reference="pNx-Rx-3hd"/>
+        <segue reference="Voc-Ul-bHR"/>
         <segue reference="5jt-oW-Tu8"/>
+        <segue reference="pNx-Rx-3hd"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate, UIScrollViewDelegate {
+class AddRecipeVC: UIViewController, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate, UIScrollViewDelegate {
 	
 	// MARK: Properties
 	@IBOutlet weak var categoryPicker: UIPickerView!
@@ -138,7 +138,6 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 		return true
 	}
 	func textFieldDidBeginEditing(textField: UITextField) {
-		//		saveButton.enabled = false
 	}
 	
 	// UITextView
@@ -149,15 +148,11 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 	// UIImagePickerControllerDelegate
 	@IBAction func selectImageFromPhotoLibrary(sender: UITapGestureRecognizer) {
 		
-		let alertController = UIAlertController(title: nil, message: "Test", preferredStyle: .ActionSheet)
+		let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
 		
 		let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
 			self.dismissViewControllerAnimated(true, completion: nil)
 		}
-		
-//		let viewAction = UIAlertAction(title: "View Image", style: .Default) { (action) in
-//			self.performSegueWithIdentifier("ViewImage", sender: self)
-//		}
 		
 		let libraryAction = UIAlertAction(title: "Pick from Library", style: .Default) { (action) in
 			self.pickImageFromLibrary()
@@ -168,16 +163,10 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 		}
 		
 		alertController.addAction(cancelAction)
-//		alertController.addAction(viewAction)
 		alertController.addAction(libraryAction)
 		alertController.addAction(takePhotoAction)
 		
 		self.presentViewController(alertController, animated: true, completion: nil)
-		
-		
-		// Implement UIActionController for view image, take image, or pick from library
-		
-//		pickImageFromLibrary()
 	}
 	
 	func takePhoto() {
@@ -291,32 +280,6 @@ class AddRecipeVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 			self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
 			self.navigationController?.popViewControllerAnimated(true)
 		}
-	}
-	
-	
-	// MARK: Delete Button
-	@IBAction func deletePressed(sender: UIButton) {
-		if recipeToEdit != nil {
-			areYouSureAlert()
-		}
-	}
-	
-	func areYouSureAlert() {
-		let alertController = UIAlertController(title: "Delete?", message: "", preferredStyle: .Alert)
-		
-		let firstAction = UIAlertAction(title: "Keep It", style: UIAlertActionStyle.Default, handler: nil)
-		let secondAction = UIAlertAction(title: "Delete It", style: UIAlertActionStyle.Destructive, handler: { action in
-			self.deleteItem()
-			self.navigationController?.popViewControllerAnimated(true) } )
-		
-		alertController.addAction(firstAction)
-		alertController.addAction(secondAction)
-		self.presentViewController(alertController, animated: true, completion: {})
-	}
-	
-	func deleteItem() {
-		ad.managedObjectContext.deleteObject(recipeToEdit!)
-		ad.saveContext()
 	}
 	
 	
