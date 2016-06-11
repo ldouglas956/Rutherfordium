@@ -90,13 +90,13 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="oP9-cZ-Y5q">
                             <connections>
-                                <segue destination="mbg-DU-Goa" kind="presentation" identifier="AddRecipe" modalTransitionStyle="flipHorizontal" id="5jt-oW-Tu8"/>
+                                <segue destination="mbg-DU-Goa" kind="presentation" identifier="ModalAddRecipe" modalTransitionStyle="flipHorizontal" id="5jt-oW-Tu8"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="GHL-q9-fmc" id="tn3-BX-Mcv"/>
-                        <segue destination="mYB-mo-3OW" kind="show" identifier="ListRecipes" id="pNx-Rx-3hd"/>
+                        <segue destination="mYB-mo-3OW" kind="show" identifier="ShowListRecipes" id="pNx-Rx-3hd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -151,7 +151,7 @@ class AddRecipeVC: UIViewController, UINavigationControllerDelegate, UIPickerVie
 		let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
 		
 		let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
-			self.dismissViewControllerAnimated(true, completion: nil)
+			// No action required
 		}
 		
 		let libraryAction = UIAlertAction(title: "Pick from Library", style: .Default) { (action) in

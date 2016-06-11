@@ -15,28 +15,20 @@ class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	@IBOutlet weak var tableView: UITableView!
 	
 	var fetchedResultsController: NSFetchedResultsController!
-	var customUINavController: CustomUINavController!
 	var categories = Categories()
 	var allCategories = [Category]()
 	var sampleRecipes = SampleRecipes()
-	
 	var categorySelectionIndex: Int?
+	
 	
 	
 	// MARK: Load / Appear Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-		
-//		self.navigationBar.backgroundColor = UIColor.lightGrayColor()
-//		self.navigationItem.titleView = UIImageView(image: UIImage(named: "Home-Recipes"))
-		
-		let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 38, height: 38))
-		imageView.contentMode = .ScaleAspectFit
-		imageView.image = UIImage(named: "Home-Recipes")
-		navigationItem.titleView = imageView
-		
+
 		tableView.delegate = self
 		tableView.dataSource = self
+		setTitleImage()
 		
 		fetchCategories()
 		if fetchedResultsController.fetchedObjects?.count == 0 {
@@ -58,9 +50,17 @@ class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	
 	// MARK: Welcome Alert
 	func welcomeAlert() {
-		
-		
-		
+		// Future Addition
+	}
+	
+	
+	
+	// MARK: Set Title Image
+	func setTitleImage() {
+		let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 38, height: 38))
+		imageView.contentMode = .ScaleAspectFit
+		imageView.image = UIImage(named: "Home-Recipes")
+		navigationItem.titleView = imageView
 	}
 	
 	
@@ -70,6 +70,8 @@ class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 		let fetchRequest = NSFetchRequest(entityName: "Category")
 		let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
 		fetchRequest.sortDescriptors = [sortDescriptor]
+		
+//		let count = ad.managedObjectContext.countForFetchRequest(fetchRecipeRequest, error: nil)
 		
 		let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: ad.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
 		fetchedResultsController = controller
@@ -117,10 +119,10 @@ class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	
 	// MARK: NAVIGATION
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if segue.identifier == "ListRecipes" {
+		if segue.identifier == "ShowListRecipes" {
 			let vc = segue.destinationViewController as! RecipesVC
 			vc.index = categorySelectionIndex
-		} else if segue.identifier == "AddRecipe" {
+		} else if segue.identifier == "ModalAddRecipe" {
 			
 		}
 	}

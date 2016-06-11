@@ -20,7 +20,6 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 	var sampleRecipes = SampleRecipes()
 	var allCategories = [Category]()
 	var recipesOfCategory = [Recipe]()
-	
 	var selectedCategory: Category?
 	var index: Int?
 	var deleteIndex: Int?
@@ -33,23 +32,14 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 		
 		tableView.delegate = self
 		tableView.dataSource = self
-		
-//		deleteAllRecipes()
-		
+
 		attemptCategoryFetch()
 		selectedCategory = allCategories[index!]
-		
-		
-		attemptRecipeFetch()
-		if fetchedRecipeController.fetchedObjects?.count == 0 {
-			attemptRecipeFetch()
-		}
-		
 	}
 	
-	override func viewDidAppear(animated: Bool) {
+	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(true)
-		
+		attemptRecipeFetch()
 		tableView.reloadData()
 	}
 	
@@ -60,8 +50,6 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 		let fetchRecipeRequest = NSFetchRequest(entityName: "Recipe")
 		let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
 		fetchRecipeRequest.sortDescriptors = [sortDescriptor]
-		
-//		let count = ad.managedObjectContext.countForFetchRequest(fetchRecipeRequest, error: nil)
 		
 		let controller = NSFetchedResultsController(fetchRequest: fetchRecipeRequest, managedObjectContext: ad.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
 		fetchedRecipeController = controller
