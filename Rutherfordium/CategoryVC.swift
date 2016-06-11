@@ -111,7 +111,7 @@ class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 			let item = objs[indexPath.row] as! Category
 			categorySelectionIndex = indexPath.row
 
-			performSegueWithIdentifier("ListRecipes", sender: item)
+			performSegueWithIdentifier("ShowListRecipes", sender: item)
 		}
 	}
 	
