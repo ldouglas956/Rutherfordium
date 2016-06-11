@@ -28,6 +28,8 @@ class AddRecipeVC: UIViewController, UINavigationControllerDelegate, UIPickerVie
 	var categories = [Category]()
 	var recipeToEdit: Recipe?
 	var keyboardMoveHeight: CGFloat = 0
+	var categorySelectionIndex: Int?
+	var modallyPresented: Bool?
 	
 	
 	
@@ -46,10 +48,17 @@ class AddRecipeVC: UIViewController, UINavigationControllerDelegate, UIPickerVie
 		if recipeToEdit != nil {
 			loadRecipeData()
 		}
+		
+
 	}
 	
-	override func viewDidAppear(animated: Bool) {
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(true)
 		configureScrollView()
+		
+		if (modallyPresented == true) {
+			categoryPicker.selectRow(categorySelectionIndex!, inComponent: 0, animated: true)
+		}
 	}
 	
 	
@@ -137,7 +146,9 @@ class AddRecipeVC: UIViewController, UINavigationControllerDelegate, UIPickerVie
 		textField.resignFirstResponder()
 		return true
 	}
+	
 	func textFieldDidBeginEditing(textField: UITextField) {
+		textField.text = ""
 	}
 	
 	// UITextView
@@ -210,7 +221,8 @@ class AddRecipeVC: UIViewController, UINavigationControllerDelegate, UIPickerVie
 	}
 	
 	func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-		print(row)
+		// No code required
+//		print(row)
 	}
 	
 	// Keyboard Function

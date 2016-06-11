@@ -21,7 +21,7 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 	var allCategories = [Category]()
 	var recipesOfCategory = [Recipe]()
 	var selectedCategory: Category?
-	var index: Int?
+	var categorySelectionIndex: Int?
 	var deleteIndex: Int?
 	
 	
@@ -34,7 +34,7 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 		tableView.dataSource = self
 
 		attemptCategoryFetch()
-		selectedCategory = allCategories[index!]
+		selectedCategory = allCategories[categorySelectionIndex!]
 	}
 	
 	override func viewWillAppear(animated: Bool) {
@@ -162,7 +162,7 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		let item = recipesOfCategory[indexPath.row]
 		
-		performSegueWithIdentifier("EditRecipe", sender: item)
+		performSegueWithIdentifier("ShowEditRecipe", sender: item)
 	}
 	
 	func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -200,11 +200,15 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 	
 	// MARK: NAVIGATION
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if segue.identifier == "EditRecipe" {
+		if segue.identifier == "ShowEditRecipe" {
 			let vc = segue.destinationViewController as! AddRecipeVC
 			vc.recipeToEdit = sender as? Recipe
-		} else if segue.identifier == "AddRecipe" {
-			
+			vc.categorySelectionIndex = categorySelectionIndex
+		} else if segue.identifier == "ModalAddRecipe" {
+			let nc = segue.destinationViewController as! UINavigationController
+			let vc = nc.topViewController as! AddRecipeVC
+			vc.categorySelectionIndex = categorySelectionIndex
+			vc.modallyPresented = true
 		}
 	}
 	

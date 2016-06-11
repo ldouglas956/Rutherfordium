@@ -121,7 +121,7 @@ class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "ShowListRecipes" {
 			let vc = segue.destinationViewController as! RecipesVC
-			vc.index = categorySelectionIndex
+			vc.categorySelectionIndex = categorySelectionIndex
 		} else if segue.identifier == "ModalAddRecipe" {
 			
 		}
