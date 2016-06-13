@@ -8,7 +8,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--CategoryVC-->
+        <!--Home Recipes-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="CategoryVC" customModule="Rutherfordium" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,7 +22,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="250" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GHL-q9-fmc">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" red="0.66882410599999997" green="0.84440793920000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.21960784310000001" green="0.40784313729999999" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" rowHeight="250" id="Jdx-VG-kAH" customClass="CategoryCell" customModule="Rutherfordium" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="600" height="250"/>
@@ -84,7 +84,8 @@
                             <constraint firstAttribute="trailing" secondItem="GHL-q9-fmc" secondAttribute="trailing" id="hlR-ym-sKx"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="kAv-j0-JF8">
+                    <navigationItem key="navigationItem" title="Home Recipes" id="kAv-j0-JF8">
+                        <barButtonItem key="backBarButtonItem" title="All" id="GiL-ee-I76"/>
                         <barButtonItem key="leftBarButtonItem" enabled="NO" systemItem="search" id="rJ5-w8-gq7">
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </barButtonItem>
@@ -118,7 +119,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zcl-dv-nEB">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.63921568630000003" green="0.70588235290000001" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeCell" rowHeight="120" id="hcw-2e-8Y5" customClass="RecipeCell" customModule="Rutherfordium" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="600" height="120"/>
@@ -129,7 +130,7 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eua-Mb-luO">
                                                     <rect key="frame" x="0.0" y="1" width="600" height="118"/>
-                                                    <color key="backgroundColor" white="0.90116570220000003" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.80392156859999997" green="0.77647058820000003" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="tintColor" white="0.90116570220000003" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cooker" translatesAutoresizingMaskIntoConstraints="NO" id="LWq-v5-kIY">
@@ -142,7 +143,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0U6-As-QDZ">
                                                     <rect key="frame" x="119" y="30" width="473" height="60"/>
                                                     <fontDescription key="fontDescription" name="HiraMinProN-W6" family="Hiragino Mincho ProN" pointSize="26"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.21960784310000001" green="0.40784313729999999" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -180,8 +181,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="p6s-6t-iCV">
-                        <barButtonItem key="backBarButtonItem" title="Cancel" id="Zgk-oH-jGR"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="cvP-pn-TUr">
+                            <color key="tintColor" red="0.21960784310000001" green="0.40784313729999999" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="mbg-DU-Goa" kind="presentation" identifier="ModalAddRecipe" modalTransitionStyle="coverVertical" id="PgW-qY-SWc"/>
                             </connections>
@@ -212,13 +213,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="zDL-fQ-nWl">
-                                        <rect key="frame" x="0.0" y="10" width="600" height="700"/>
+                                        <rect key="frame" x="2" y="10" width="596" height="700"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="50" placeholderIntrinsicHeight="50" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wyH-3t-uRh">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="240"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="596" height="238"/>
                                                 <subviews>
                                                     <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="50" placeholderIntrinsicHeight="50" image="cooker" translatesAutoresizingMaskIntoConstraints="NO" id="Km3-xa-Ywm">
-                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="240"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="238" height="238"/>
                                                         <gestureRecognizers/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="Km3-xa-Ywm" secondAttribute="height" multiplier="1:1" id="SlB-ue-kH1"/>
@@ -228,14 +229,16 @@
                                                         </connections>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Cb8-50-byY">
-                                                        <rect key="frame" x="248" y="0.0" width="352" height="240"/>
+                                                        <rect key="frame" x="246" y="0.0" width="350" height="238"/>
                                                         <subviews>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Recipe Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N3O-OU-CcB">
-                                                                <rect key="frame" x="0.0" y="0.0" width="352" height="79"/>
-                                                                <color key="backgroundColor" white="0.90116570220000003" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Recipe Name" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="N3O-OU-CcB" customClass="AkiraTextField" customModule="Rutherfordium" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="350" height="78"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="Bg2-B1-hNb"/>
                                                                 </constraints>
+                                                                <color key="textColor" red="0.21960784310000001" green="0.40784313729999999" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="18"/>
                                                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                                 <variation key="default">
@@ -245,14 +248,16 @@
                                                                 </variation>
                                                             </textField>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="72k-XU-HaN">
-                                                                <rect key="frame" x="0.0" y="81" width="352" height="78"/>
+                                                                <rect key="frame" x="0.0" y="80" width="350" height="78"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Time (min)" textAlignment="center" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="fww-kP-HK8">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="175" height="78"/>
-                                                                        <color key="backgroundColor" white="0.90116570220000003" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Time (min)" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="fww-kP-HK8" customClass="AkiraTextField" customModule="Rutherfordium" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="174" height="78"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="40" id="rsn-Gx-1EE"/>
                                                                         </constraints>
+                                                                        <color key="textColor" red="0.21960784310000001" green="0.40784313729999999" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="15"/>
                                                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                                         <variation key="default">
@@ -261,12 +266,14 @@
                                                                             </mask>
                                                                         </variation>
                                                                     </textField>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Servings" textAlignment="center" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="sUV-93-npg">
-                                                                        <rect key="frame" x="177" y="0.0" width="175" height="78"/>
-                                                                        <color key="backgroundColor" white="0.90116570220000003" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Servings" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="sUV-93-npg" customClass="AkiraTextField" customModule="Rutherfordium" customModuleProvider="target">
+                                                                        <rect key="frame" x="176" y="0.0" width="174" height="78"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="40" id="ly7-Qk-yeQ"/>
                                                                         </constraints>
+                                                                        <color key="textColor" red="0.21960784310000001" green="0.40784313729999999" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="15"/>
                                                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                                         <variation key="default">
@@ -277,21 +284,27 @@
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
-                                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sUQ-Cu-blA">
-                                                                <rect key="frame" x="0.0" y="161" width="352" height="79"/>
-                                                                <color key="backgroundColor" white="0.90116570220000003" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sUQ-Cu-blA" customClass="CustomPicker" customModule="Rutherfordium" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="160" width="350" height="78"/>
+                                                                <color key="backgroundColor" red="0.63921568630000003" green="0.70588235290000001" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="tintColor" red="0.63921568630000003" green="0.70588235290000001" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                                        <color key="value" red="0.21960784310000001" green="0.40784313729999999" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                             </pickerView>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" pagingEnabled="YES" keyboardDismissMode="onDrag" text="Ingredients" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="z8V-cM-0uU">
-                                                <rect key="frame" x="0.0" y="248" width="600" height="199"/>
-                                                <color key="backgroundColor" white="0.90263382300434492" alpha="1" colorSpace="calibratedWhite"/>
+                                                <rect key="frame" x="0.0" y="246" width="596" height="198"/>
+                                                <color key="backgroundColor" red="0.63921568630000003" green="0.70588235290000001" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="2Z2-xY-OvI"/>
                                                 </constraints>
-                                                <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" red="0.21960784310000001" green="0.40784313729999999" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert" enablesReturnKeyAutomatically="YES"/>
                                                 <variation key="default">
@@ -301,26 +314,29 @@
                                                 </variation>
                                             </textView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" keyboardDismissMode="onDrag" text="Directions" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OwH-R0-DqE">
-                                                <rect key="frame" x="0.0" y="455" width="600" height="199"/>
-                                                <color key="backgroundColor" white="0.90116570219897585" alpha="1" colorSpace="calibratedWhite"/>
-                                                <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <rect key="frame" x="0.0" y="452" width="596" height="198"/>
+                                                <color key="backgroundColor" red="0.63921568630000003" green="0.70588235290000001" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="0.21960784310000001" green="0.40784313729999999" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                                             </textView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Link to Online Recipe" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xdh-Gq-cll">
-                                                <rect key="frame" x="0.0" y="662" width="600" height="30"/>
-                                                <color key="backgroundColor" white="0.90116570220000003" alpha="1" colorSpace="calibratedWhite"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Link to Online Recipe" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xdh-Gq-cll" customClass="AkiraTextField" customModule="Rutherfordium" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="658" width="596" height="34"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="Gey-2A-4mG"/>
+                                                    <constraint firstAttribute="height" constant="34" id="Gey-2A-4mG"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" red="0.21960784310000001" green="0.40784313729999999" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="ZAG-38-EGH">
-                                                <rect key="frame" x="0.0" y="700" width="600" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="700" width="596" height="0.0"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <string key="text">Created By: Lance Douglas,
 Thanks for downloading!</string>
+                                                <color key="textColor" red="0.21960784310000001" green="0.40784313729999999" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="8"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -332,7 +348,8 @@ Thanks for downloading!</string>
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.66882410596877939" green="0.84440793917307566" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.80392156859999997" green="0.77647058820000003" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="zDL-fQ-nWl" secondAttribute="trailing" id="0Wh-Nl-0ih"/>
                                     <constraint firstItem="zDL-fQ-nWl" firstAttribute="centerX" secondItem="Ed3-qK-jed" secondAttribute="centerX" id="5wG-oW-OrB"/>
@@ -345,13 +362,14 @@ Thanks for downloading!</string>
                         <constraints>
                             <constraint firstItem="Hhk-i0-Sul" firstAttribute="top" secondItem="Ed3-qK-jed" secondAttribute="bottom" id="TKZ-O3-ruw"/>
                             <constraint firstItem="Ed3-qK-jed" firstAttribute="top" secondItem="V6t-4U-oFU" secondAttribute="bottom" constant="-64" id="aPH-nh-oUx"/>
-                            <constraint firstItem="zDL-fQ-nWl" firstAttribute="width" secondItem="m3K-zg-usy" secondAttribute="width" id="gML-Q4-Qxi"/>
+                            <constraint firstItem="zDL-fQ-nWl" firstAttribute="width" secondItem="m3K-zg-usy" secondAttribute="width" constant="-4" id="gML-Q4-Qxi"/>
                             <constraint firstAttribute="trailing" secondItem="Ed3-qK-jed" secondAttribute="trailing" id="qgY-pZ-Xaa"/>
                             <constraint firstItem="Ed3-qK-jed" firstAttribute="leading" secondItem="m3K-zg-usy" secondAttribute="leading" id="sXa-wm-gbE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="yC0-qZ-H31">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="dnI-lP-UNC">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="dnI-lP-UNC">
+                            <color key="tintColor" red="0.21960784310000001" green="0.40784313729999999" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="cancel:" destination="8I4-yb-Stk" id="LOk-qL-jbc"/>
                             </connections>
@@ -449,8 +467,8 @@ Thanks for downloading!</string>
         <image name="cooker" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="pNx-Rx-3hd"/>
         <segue reference="VGm-6H-xLG"/>
-        <segue reference="PgW-qY-SWc"/>
+        <segue reference="pNx-Rx-3hd"/>
+        <segue reference="5jt-oW-Tu8"/>
     </inferredMetricsTieBreakers>
 </document>

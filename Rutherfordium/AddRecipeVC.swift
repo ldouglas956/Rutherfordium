@@ -148,7 +148,7 @@ class AddRecipeVC: UIViewController, UINavigationControllerDelegate, UIPickerVie
 	}
 	
 	func textFieldDidBeginEditing(textField: UITextField) {
-		textField.text = ""
+//		textField.text = ""
 	}
 	
 	// UITextView
@@ -215,14 +215,27 @@ class AddRecipeVC: UIViewController, UINavigationControllerDelegate, UIPickerVie
 		return categories.count
 	}
 	
-	func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-		let category = categories[row]
-		return category.title
+	func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
+		
+		var pickerLabel = view as? UILabel
+		if pickerLabel == nil {
+			pickerLabel = UILabel()
+			pickerLabel?.font = UIFont(name: "Hiragino Mincho ProN W3", size: 15.0)
+			pickerLabel?.textAlignment = .Center
+		}
+		
+		pickerLabel?.text = categories[row].title!.substringFromIndex(categories[row].title!.startIndex.advancedBy(3))
+		return pickerLabel!
 	}
 	
 	func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 		// No code required
 //		print(row)
+	}
+	
+	func configurePickerView() {
+		categoryPicker.backgroundColor = UIColor.clearColor()
+		
 	}
 	
 	// Keyboard Function

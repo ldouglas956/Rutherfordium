@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
+class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UINavigationControllerDelegate, UINavigationBarDelegate {
 	
 	// MARK: Properties
 	@IBOutlet weak var tableView: UITableView!
@@ -29,6 +29,7 @@ class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 		tableView.delegate = self
 		tableView.dataSource = self
 		setTitleImage()
+		
 		
 		fetchCategories()
 		if fetchedResultsController.fetchedObjects?.count == 0 {
@@ -57,13 +58,20 @@ class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	
 	// MARK: Set Title Image
 	func setTitleImage() {
-		let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 38, height: 38))
-		imageView.contentMode = .ScaleAspectFit
-		imageView.image = UIImage(named: "Home-Recipes")
-		navigationItem.titleView = imageView
+		// Image
+//		let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 38, height: 38))
+//		imageView.contentMode = .ScaleAspectFit
+//		imageView.image = UIImage(named: "Home-Recipes")
+//		navigationItem.titleView = imageView
+		
+		// Text
+		self.navigationController?.navigationBar.translucent = true
+		self.navigationItem.title = "Home Recipes"
+		self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(colorLiteralRed: 56/255, green: 104/255, blue: 106/255, alpha: 1), NSFontAttributeName: UIFont(name: "Hiragino Mincho ProN W6", size: 30.0)!]
+		self.navigationController!.navigationBar.tintColor = UIColor(colorLiteralRed: 56/255, green: 104/255, blue: 106/255, alpha: 1)
 	}
-	
-	
+
+
 	
 	// MARK: Core Data Fetch
 	func fetchCategories() {
