@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class CategoryCell: UITableViewCell {
 	
 	@IBOutlet private weak var catTitle: UILabel!
@@ -24,9 +25,9 @@ class CategoryCell: UITableViewCell {
     }
 	
 	func configureCell(category: Category) {
-		catTitle.text = category.title
+		catTitle.text = category.title!.substringFromIndex(category.title!.startIndex.advancedBy(3))
 		catImage.image = category.getCatImage()
-		catCount.text = "0"
+		catCount.text = ""
 	}
 
 }

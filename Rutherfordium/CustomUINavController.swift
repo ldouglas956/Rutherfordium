@@ -8,18 +8,20 @@
 
 import UIKit
 
-class UINavController: UINavigationController {
+class CustomUINavController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.navigationBar.backgroundColor = UIColor.clearColor()
+//		viewSetUp()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
+	
+	func viewSetUp() {
+		self.navigationBar.backgroundColor = UIColor.lightGrayColor()
+		self.navigationItem.titleView = UIImageView(image: UIImage(named: "Home-Recipes"))
+	}
 
 }

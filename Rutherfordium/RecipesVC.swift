@@ -20,9 +20,8 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 	var sampleRecipes = SampleRecipes()
 	var allCategories = [Category]()
 	var recipesOfCategory = [Recipe]()
-	
 	var selectedCategory: Category?
-	var index: Int?
+	var categorySelectionIndex: Int?
 	var deleteIndex: Int?
 	
 	
@@ -33,26 +32,25 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 		
 		tableView.delegate = self
 		tableView.dataSource = self
-		
-//		deleteAllRecipes()
-		
+
 		attemptCategoryFetch()
-		selectedCategory = allCategories[index!]
-		
-		
-		attemptRecipeFetch()
-		if fetchedRecipeController.fetchedObjects?.count == 0 {
-			attemptRecipeFetch()
-		}
-		
+		selectedCategory = allCategories[categorySelectionIndex!]
 	}
 	
-	override func viewDidAppear(animated: Bool) {
+	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(true)
-		
+		attemptRecipeFetch()
+		setTitle()
 		tableView.reloadData()
 	}
 	
+	
+	
+	// MARK: Configure Views
+	func setTitle() {
+		self.navigationItem.title = selectedCategory!.title!.substringFromIndex(selectedCategory!.title!.startIndex.advancedBy(3))
+		self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(colorLiteralRed: 56/255, green: 104/255, blue: 106/255, alpha: 1), NSFontAttributeName: UIFont(name: "Hiragino Mincho ProN W6", size: 20.0)!]
+	}
 	
 	
 	// MARK: Core Data Fetch
@@ -60,8 +58,6 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 		let fetchRecipeRequest = NSFetchRequest(entityName: "Recipe")
 		let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
 		fetchRecipeRequest.sortDescriptors = [sortDescriptor]
-		
-//		let count = ad.managedObjectContext.countForFetchRequest(fetchRecipeRequest, error: nil)
 		
 		let controller = NSFetchedResultsController(fetchRequest: fetchRecipeRequest, managedObjectContext: ad.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
 		fetchedRecipeController = controller
@@ -174,7 +170,7 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		let item = recipesOfCategory[indexPath.row]
 		
-		performSegueWithIdentifier("EditRecipe", sender: item)
+		performSegueWithIdentifier("ShowEditRecipe", sender: item)
 	}
 	
 	func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -212,12 +208,15 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 	
 	// MARK: NAVIGATION
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if segue.identifier == "EditRecipe" {
-			print("Viewing / Editing Recipe")
+		if segue.identifier == "ShowEditRecipe" {
 			let vc = segue.destinationViewController as! AddRecipeVC
 			vc.recipeToEdit = sender as? Recipe
-		} else if segue.identifier == "AddRecipe" {
-			print("Adding new Recipe from RecipesVC")
+			vc.categorySelectionIndex = categorySelectionIndex
+		} else if segue.identifier == "ModalAddRecipe" {
+			let nc = segue.destinationViewController as! UINavigationController
+			let vc = nc.topViewController as! AddRecipeVC
+			vc.categorySelectionIndex = categorySelectionIndex
+			vc.modallyPresented = true
 		}
 	}
 	

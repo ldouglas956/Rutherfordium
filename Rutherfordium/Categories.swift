@@ -22,15 +22,15 @@ class Categories {
 		let category8 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
 		let category9 = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: ad.managedObjectContext) as! Category
 		
-		category1.title = "Breakfast"
-		category2.title = "Dessert"
-		category3.title = "Drinks"
-		category4.title = "Main Course"
-		category5.title = "Salad"
-		category6.title = "Sides"
-		category7.title = "Snacks"
-		category8.title = "Soup / Chili"
-		category9.title = "Appetizers"
+		category1.title = "7) Breakfast"
+		category2.title = "6) Dessert"
+		category3.title = "9) Drinks"
+		category4.title = "4) Main Course"
+		category5.title = "3) Salad"
+		category6.title = "5) Sides"
+		category7.title = "8) Snacks"
+		category8.title = "2) Soup / Chili"
+		category9.title = "1) Appetizers"
 		
 		category1.setCatImage(UIImage(named: "breakfast")!)
 		category2.setCatImage(UIImage(named: "dessert")!)

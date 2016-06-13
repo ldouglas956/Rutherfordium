@@ -21,5 +21,4 @@ class Category: NSManagedObject {
 		return img!
 	}
 	
-	
 }

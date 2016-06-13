@@ -28,6 +28,8 @@ class AddRecipeVC: UIViewController, UINavigationControllerDelegate, UIPickerVie
 	var categories = [Category]()
 	var recipeToEdit: Recipe?
 	var keyboardMoveHeight: CGFloat = 0
+	var categorySelectionIndex: Int?
+	var modallyPresented: Bool?
 	
 	
 	
@@ -46,10 +48,17 @@ class AddRecipeVC: UIViewController, UINavigationControllerDelegate, UIPickerVie
 		if recipeToEdit != nil {
 			loadRecipeData()
 		}
+		
+
 	}
 	
-	override func viewDidAppear(animated: Bool) {
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(true)
 		configureScrollView()
+		
+		if (modallyPresented == true) {
+			categoryPicker.selectRow(categorySelectionIndex!, inComponent: 0, animated: true)
+		}
 	}
 	
 	
@@ -137,7 +146,9 @@ class AddRecipeVC: UIViewController, UINavigationControllerDelegate, UIPickerVie
 		textField.resignFirstResponder()
 		return true
 	}
+	
 	func textFieldDidBeginEditing(textField: UITextField) {
+//		textField.text = ""
 	}
 	
 	// UITextView
@@ -151,7 +162,7 @@ class AddRecipeVC: UIViewController, UINavigationControllerDelegate, UIPickerVie
 		let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
 		
 		let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
-			self.dismissViewControllerAnimated(true, completion: nil)
+			// No action required
 		}
 		
 		let libraryAction = UIAlertAction(title: "Pick from Library", style: .Default) { (action) in
@@ -204,13 +215,27 @@ class AddRecipeVC: UIViewController, UINavigationControllerDelegate, UIPickerVie
 		return categories.count
 	}
 	
-	func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-		let category = categories[row]
-		return category.title
+	func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
+		
+		var pickerLabel = view as? UILabel
+		if pickerLabel == nil {
+			pickerLabel = UILabel()
+			pickerLabel?.font = UIFont(name: "Hiragino Mincho ProN W3", size: 15.0)
+			pickerLabel?.textAlignment = .Center
+		}
+		
+		pickerLabel?.text = categories[row].title!.substringFromIndex(categories[row].title!.startIndex.advancedBy(3))
+		return pickerLabel!
 	}
 	
 	func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-		print(row)
+		// No code required
+//		print(row)
+	}
+	
+	func configurePickerView() {
+		categoryPicker.backgroundColor = UIColor.clearColor()
+		
 	}
 	
 	// Keyboard Function
@@ -295,15 +320,7 @@ class AddRecipeVC: UIViewController, UINavigationControllerDelegate, UIPickerVie
 		}
 	}
 	
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if segue.identifier == "EditRecipe" {
-			print("Viewing / Editing Recipe")
-			let vc = segue.destinationViewController as! AddRecipeVC
-			vc.recipeToEdit = sender as? Recipe
-		} else if segue.identifier == "AddRecipe" {
-			print("Adding new Recipe from RecipesVC")
-		}
-	}
+
 	
 }
 

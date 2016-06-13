@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
+class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UINavigationControllerDelegate, UINavigationBarDelegate {
 	
 	// MARK: Properties
 	@IBOutlet weak var tableView: UITableView!
@@ -18,16 +18,18 @@ class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	var categories = Categories()
 	var allCategories = [Category]()
 	var sampleRecipes = SampleRecipes()
-	
 	var categorySelectionIndex: Int?
+	
 	
 	
 	// MARK: Load / Appear Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-		
+
 		tableView.delegate = self
 		tableView.dataSource = self
+		setTitleImage()
+		
 		
 		fetchCategories()
 		if fetchedResultsController.fetchedObjects?.count == 0 {
@@ -41,13 +43,43 @@ class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 		tableView.reloadData()
 	}
 	
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+	}
 	
+	
+	
+	// MARK: Welcome Alert
+	func welcomeAlert() {
+		// Future Addition
+	}
+	
+	
+	
+	// MARK: Set Title Image
+	func setTitleImage() {
+		// Image
+//		let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 38, height: 38))
+//		imageView.contentMode = .ScaleAspectFit
+//		imageView.image = UIImage(named: "Home-Recipes")
+//		navigationItem.titleView = imageView
+		
+		// Text
+		self.navigationController?.navigationBar.translucent = true
+		self.navigationItem.title = "Home Recipes"
+		self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(colorLiteralRed: 56/255, green: 104/255, blue: 106/255, alpha: 1), NSFontAttributeName: UIFont(name: "Hiragino Mincho ProN W6", size: 30.0)!]
+		self.navigationController!.navigationBar.tintColor = UIColor(colorLiteralRed: 56/255, green: 104/255, blue: 106/255, alpha: 1)
+	}
+
+
 	
 	// MARK: Core Data Fetch
 	func fetchCategories() {
 		let fetchRequest = NSFetchRequest(entityName: "Category")
 		let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
 		fetchRequest.sortDescriptors = [sortDescriptor]
+		
+//		let count = ad.managedObjectContext.countForFetchRequest(fetchRecipeRequest, error: nil)
 		
 		let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: ad.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
 		fetchedResultsController = controller
@@ -87,7 +119,7 @@ class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 			let item = objs[indexPath.row] as! Category
 			categorySelectionIndex = indexPath.row
 
-			performSegueWithIdentifier("ListRecipes", sender: item)
+			performSegueWithIdentifier("ShowListRecipes", sender: item)
 		}
 	}
 	
@@ -95,12 +127,11 @@ class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	
 	// MARK: NAVIGATION
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if segue.identifier == "ListRecipes" {
-			print("Viewing List of Recipes")
+		if segue.identifier == "ShowListRecipes" {
 			let vc = segue.destinationViewController as! RecipesVC
-			vc.index = categorySelectionIndex
-		} else if segue.identifier == "AddRecipe" {
-			print("Adding new Recipe from CategoryVC")
+			vc.categorySelectionIndex = categorySelectionIndex
+		} else if segue.identifier == "ModalAddRecipe" {
+			
 		}
 	}
 	
