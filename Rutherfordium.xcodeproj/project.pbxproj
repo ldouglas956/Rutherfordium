@@ -14,6 +14,7 @@
 		8E116A981CF00F3D0032C39A /* AddRecipeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E116A971CF00F3D0032C39A /* AddRecipeVC.swift */; };
 		8E19ACB81D05515F00CD0993 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E19ACB61D05515F00CD0993 /* Category+CoreDataProperties.swift */; };
 		8E19ACB91D05515F00CD0993 /* Recipe+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E19ACB71D05515F00CD0993 /* Recipe+CoreDataProperties.swift */; };
+		8E2276331D0F054000B2874E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E2276321D0F054000B2874E /* Assets.xcassets */; };
 		8E769E051CE59D3F0015139A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E769E041CE59D3F0015139A /* AppDelegate.swift */; };
 		8E769E0A1CE59D3F0015139A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E769E081CE59D3F0015139A /* Main.storyboard */; };
 		8E769E0D1CE59D3F0015139A /* Rutherfordium.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8E769E0B1CE59D3F0015139A /* Rutherfordium.xcdatamodeld */; };
@@ -23,7 +24,6 @@
 		8E77C94E1D0DEAC8003B0B9D /* AkiraTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E77C94C1D0DEAC8003B0B9D /* AkiraTextField.swift */; };
 		8E77C94F1D0DEAC8003B0B9D /* TextFieldsEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E77C94D1D0DEAC8003B0B9D /* TextFieldsEffects.swift */; };
 		8E77C9511D0E0006003B0B9D /* CustomPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E77C9501D0E0006003B0B9D /* CustomPicker.swift */; };
-		8EB668281CE6662B00E0A75A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EB668271CE6662B00E0A75A /* Assets.xcassets */; };
 		8EB668321CE6821100E0A75A /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB668311CE6821100E0A75A /* CategoryCell.swift */; };
 		8EB668341CEA5AA500E0A75A /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB668331CEA5AA400E0A75A /* RecipeCell.swift */; };
 		8ECAD5471D09EB9500B8995D /* RotatedImageFix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECAD5461D09EB9500B8995D /* RotatedImageFix.swift */; };
@@ -57,6 +57,7 @@
 		8E116A971CF00F3D0032C39A /* AddRecipeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipeVC.swift; sourceTree = "<group>"; };
 		8E19ACB61D05515F00CD0993 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8E19ACB71D05515F00CD0993 /* Recipe+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8E2276321D0F054000B2874E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E769E011CE59D3F0015139A /* Rutherfordium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rutherfordium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E769E041CE59D3F0015139A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E769E091CE59D3F0015139A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -72,7 +73,6 @@
 		8E77C94C1D0DEAC8003B0B9D /* AkiraTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AkiraTextField.swift; sourceTree = "<group>"; };
 		8E77C94D1D0DEAC8003B0B9D /* TextFieldsEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldsEffects.swift; sourceTree = "<group>"; };
 		8E77C9501D0E0006003B0B9D /* CustomPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPicker.swift; sourceTree = "<group>"; };
-		8EB668271CE6662B00E0A75A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8EB668311CE6821100E0A75A /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		8EB668331CEA5AA400E0A75A /* RecipeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
 		8ECAD5461D09EB9500B8995D /* RotatedImageFix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotatedImageFix.swift; sourceTree = "<group>"; };
@@ -168,8 +168,8 @@
 		8E769E351CE59E110015139A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8EB668271CE6662B00E0A75A /* Assets.xcassets */,
 				8E769E041CE59D3F0015139A /* AppDelegate.swift */,
+				8E2276321D0F054000B2874E /* Assets.xcassets */,
 				8E769E131CE59D3F0015139A /* Info.plist */,
 				8E769E0B1CE59D3F0015139A /* Rutherfordium.xcdatamodeld */,
 			);
@@ -328,8 +328,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E769E121CE59D3F0015139A /* LaunchScreen.storyboard in Resources */,
-				8EB668281CE6662B00E0A75A /* Assets.xcassets in Resources */,
 				8E769E0A1CE59D3F0015139A /* Main.storyboard in Resources */,
+				8E2276331D0F054000B2874E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -301,17 +301,9 @@
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" pagingEnabled="YES" keyboardDismissMode="onDrag" text="Ingredients" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="z8V-cM-0uU">
                                                 <rect key="frame" x="0.0" y="246" width="596" height="198"/>
                                                 <color key="backgroundColor" red="0.63921568630000003" green="0.70588235290000001" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="2Z2-xY-OvI"/>
-                                                </constraints>
                                                 <color key="textColor" red="0.21960784310000001" green="0.40784313729999999" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert" enablesReturnKeyAutomatically="YES"/>
-                                                <variation key="default">
-                                                    <mask key="constraints">
-                                                        <exclude reference="2Z2-xY-OvI"/>
-                                                    </mask>
-                                                </variation>
                                             </textView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" keyboardDismissMode="onDrag" text="Directions" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OwH-R0-DqE">
                                                 <rect key="frame" x="0.0" y="452" width="596" height="198"/>
@@ -353,7 +345,7 @@ Thanks for downloading!</string>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="zDL-fQ-nWl" secondAttribute="trailing" id="0Wh-Nl-0ih"/>
                                     <constraint firstItem="zDL-fQ-nWl" firstAttribute="centerX" secondItem="Ed3-qK-jed" secondAttribute="centerX" id="5wG-oW-OrB"/>
-                                    <constraint firstAttribute="bottom" secondItem="zDL-fQ-nWl" secondAttribute="bottom" constant="142" id="VnH-eb-RC6"/>
+                                    <constraint firstAttribute="bottom" secondItem="zDL-fQ-nWl" secondAttribute="bottom" constant="10" id="VnH-eb-RC6"/>
                                     <constraint firstItem="zDL-fQ-nWl" firstAttribute="top" secondItem="Ed3-qK-jed" secondAttribute="top" constant="10" id="omr-by-cso"/>
                                 </constraints>
                             </scrollView>
@@ -463,7 +455,7 @@ Thanks for downloading!</string>
         </scene>
     </scenes>
     <resources>
-        <image name="breakfast" width="1920" height="1280"/>
+        <image name="breakfast" width="540" height="360"/>
         <image name="cooker" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
