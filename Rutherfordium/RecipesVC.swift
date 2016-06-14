@@ -49,7 +49,7 @@ class RecipesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, N
 	// MARK: Configure Views
 	func setTitle() {
 		self.navigationItem.title = selectedCategory!.title!.substringFromIndex(selectedCategory!.title!.startIndex.advancedBy(3))
-		self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(colorLiteralRed: 56/255, green: 104/255, blue: 106/255, alpha: 1), NSFontAttributeName: UIFont(name: "Hiragino Mincho ProN W6", size: 20.0)!]
+		self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 1), NSFontAttributeName: UIFont(name: "Hiragino Mincho ProN W6", size: 20.0)!]
 	}
 	
 	

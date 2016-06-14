@@ -16,14 +16,14 @@ class AddRecipeVC: UIViewController, UINavigationControllerDelegate, UIPickerVie
 	@IBOutlet weak var nameField: UITextField!
 	@IBOutlet weak var timeField: UITextField!
 	@IBOutlet weak var servingsField: UITextField!
-	@IBOutlet weak var linkField: UITextField!
+	@IBOutlet weak var linkField: UITextView!
+	@IBOutlet weak var linkButton: UIButton!
 	@IBOutlet weak var ingredientsField: UITextView!
 	@IBOutlet weak var directionsField: UITextView!
-	@IBOutlet weak var saveButton: UIButton!
-	@IBOutlet weak var deleteButton: UIButton!
 	@IBOutlet weak var mealPhoto: UIImageView!
 	@IBOutlet weak var scrollView: UIScrollView!
 	@IBOutlet weak var stackView: UIStackView!
+	
 	
 	var categories = [Category]()
 	var recipeToEdit: Recipe?
@@ -42,10 +42,12 @@ class AddRecipeVC: UIViewController, UINavigationControllerDelegate, UIPickerVie
 
 		selfDelegates()
 		configureImage()
+		configureButton()
 		
 		getCategories()
 		
 		if recipeToEdit != nil {
+			
 			loadRecipeData()
 		}
 		
@@ -55,6 +57,7 @@ class AddRecipeVC: UIViewController, UINavigationControllerDelegate, UIPickerVie
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(true)
 		configureScrollView()
+		linkField.scrollEnabled = true
 		
 		if (modallyPresented == true) {
 			categoryPicker.selectRow(categorySelectionIndex!, inComponent: 0, animated: true)
@@ -136,9 +139,30 @@ class AddRecipeVC: UIViewController, UINavigationControllerDelegate, UIPickerVie
 	
 	// UIScrolLView
 	func configureScrollView() {
-		scrollView.contentSize.width = self.view.bounds.size.width
-		scrollView.contentSize.height = stackView.bounds.size.height + 20
-		scrollView.keyboardDismissMode = .Interactive
+		self.scrollView.contentSize.width = self.view.bounds.size.width
+		self.scrollView.contentSize.height = stackView.bounds.size.height + 20
+		self.scrollView.keyboardDismissMode = .OnDrag
+	}
+	
+	// UIButton (Link)
+	@IBAction func openLink(sender: UIButton) {
+		print(linkField.text)
+		if let link = linkField.text {
+			if link.containsString("http") {
+				UIApplication.sharedApplication().openURL((URL: NSURL(string: link)!))
+			} else {
+				let alertController = UIAlertController(title: "Sorry, link not valid", message: "Try inserting https://\nor https://www.", preferredStyle: .Alert)
+				let cancelAction = UIAlertAction(title: "OK", style: .Cancel) { (action) in
+				}
+			 	alertController.addAction(cancelAction)
+				self.presentViewController(alertController, animated: true, completion: nil)
+			}
+		}
+	}
+	
+	func configureButton() {
+		linkButton.layer.borderWidth = 1
+		linkButton.layer.borderColor = UIColor.blackColor().CGColor
 	}
 	
 	// UITextField
@@ -148,7 +172,7 @@ class AddRecipeVC: UIViewController, UINavigationControllerDelegate, UIPickerVie
 	}
 	
 	func textFieldDidBeginEditing(textField: UITextField) {
-//		textField.text = ""
+		textField.selectAll(textField)
 	}
 	
 	// UITextView
@@ -261,6 +285,10 @@ class AddRecipeVC: UIViewController, UINavigationControllerDelegate, UIPickerVie
 			UIView.animateWithDuration(0.1, animations: { () -> Void in
 				self.view.frame.origin.y = 0.0
 			})
+		}
+		
+		if let header = nameField.text {
+			self.navigationItem.title = header
 		}
 	}
 	

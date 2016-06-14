@@ -24,10 +24,9 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Launch3" translatesAutoresizingMaskIntoConstraints="NO" id="ZIi-aa-hQf">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="210"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Home Recipes" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WOw-Zm-YNX">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Home Recipes" textAlignment="center" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="WOw-Zm-YNX">
                                 <rect key="frame" x="0.0" y="210" width="600" height="180"/>
-                                <color key="backgroundColor" red="0.80392156859999997" green="0.77647058820000003" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="textColor" red="0.21960784310000001" green="0.40784313729999999" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.63921568630000003" green="0.70588235290000001" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HiraMinProN-W6" family="Hiragino Mincho ProN" pointSize="70"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>

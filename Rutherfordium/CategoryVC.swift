@@ -67,8 +67,10 @@ class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 		// Text
 		self.navigationController?.navigationBar.translucent = true
 		self.navigationItem.title = "Home Recipes"
-		self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(colorLiteralRed: 56/255, green: 104/255, blue: 106/255, alpha: 1), NSFontAttributeName: UIFont(name: "Hiragino Mincho ProN W6", size: 30.0)!]
-		self.navigationController!.navigationBar.tintColor = UIColor(colorLiteralRed: 56/255, green: 104/255, blue: 106/255, alpha: 1)
+		self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 1), NSFontAttributeName: UIFont(name: "Hiragino Mincho ProN W6", size: 30.0)!]
+		self.navigationController!.navigationBar.tintColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+		self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
+		self.navigationController?.navigationBar.barTintColor = UIColor(colorLiteralRed: 157/255, green: 181/255, blue: 171/255, alpha: 1)
 	}
 
 
@@ -108,13 +110,14 @@ class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 		let cell = tableView.dequeueReusableCellWithIdentifier("CategoryCell", forIndexPath: indexPath) as! CategoryCell
 		if let category = fetchedResultsController.objectAtIndexPath(indexPath) as? Category {
 			cell.configureCell(category)
+			cell.selectionStyle = UITableViewCellSelectionStyle.None
 		}
 
 		return CategoryCell()
 	}
 
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
+		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 		if let objs = fetchedResultsController.fetchedObjects where objs.count > 0 {
 			let item = objs[indexPath.row] as! Category
 			categorySelectionIndex = indexPath.row
