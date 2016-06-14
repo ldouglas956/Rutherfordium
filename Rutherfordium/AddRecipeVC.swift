@@ -146,7 +146,7 @@ class AddRecipeVC: UIViewController, UINavigationControllerDelegate, UIPickerVie
 	func configureScrollView() {
 		self.scrollView.contentSize.width = self.view.bounds.size.width
 		self.scrollView.contentSize.height = stackView.bounds.size.height + 20
-		self.scrollView.keyboardDismissMode = .OnDrag
+//		self.scrollView.keyboardDismissMode = .Interactive
 	}
 	
 	// UIButton (Link)
