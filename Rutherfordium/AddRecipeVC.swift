@@ -64,7 +64,12 @@ class AddRecipeVC: UIViewController, UINavigationControllerDelegate, UIPickerVie
 		}
 	}
 	
-	
+	override func viewDidLayoutSubviews() {
+		// Scroll to top of field full of text
+		self.ingredientsField.setContentOffset(CGPointZero, animated: false)
+		self.directionsField.setContentOffset(CGPointZero, animated: false)
+		self.linkField.setContentOffset(CGPointZero, animated: false)
+	}
 	
 	// MARK: Core Data Fetch
 	func getCategories() {
