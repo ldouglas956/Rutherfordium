@@ -117,6 +117,10 @@ class CategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	}
 
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		UITableViewCellSelectionStyle.None
+		let selectedCell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+		selectedCell.contentView.backgroundColor = UIColor(colorLiteralRed: 157/255, green: 181/255, blue: 178/255, alpha: 1)
+		
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 		if let objs = fetchedResultsController.fetchedObjects where objs.count > 0 {
 			let item = objs[indexPath.row] as! Category

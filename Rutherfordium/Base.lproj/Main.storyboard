@@ -53,6 +53,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.61568627450000002" green="0.70980392160000005" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="Sq5-YB-PSB" secondAttribute="trailing" constant="8" id="11U-an-76l"/>
                                                 <constraint firstItem="TcF-N5-uyi" firstAttribute="leading" secondItem="Sm6-9J-XVW" secondAttribute="leading" constant="8" id="3wN-Kn-6I0"/>
@@ -66,7 +67,7 @@
                                                 <constraint firstItem="Sq5-YB-PSB" firstAttribute="top" secondItem="TcF-N5-uyi" secondAttribute="bottom" constant="8" id="q7E-cb-4pN"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.73537422872391833" green="0.99402039387287233" blue="0.70759330689257216" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.61568627450000002" green="0.70980392160000005" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="catCount" destination="Sq5-YB-PSB" id="O9r-Mu-m63"/>
                                             <outlet property="catImage" destination="FiJ-If-5gE" id="RXO-A8-c5k"/>
@@ -518,7 +519,7 @@ Thanks for downloading!</string>
         <image name="silverware" width="950" height="502"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PgW-qY-SWc"/>
+        <segue reference="5jt-oW-Tu8"/>
         <segue reference="VGm-6H-xLG"/>
     </inferredMetricsTieBreakers>
 </document>

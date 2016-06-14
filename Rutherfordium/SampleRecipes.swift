@@ -29,14 +29,14 @@ class SampleRecipes {
 		
 		// 1) Appetizers
 		let recipe1 = NSEntityDescription.insertNewObjectForEntityForName("Recipe", inManagedObjectContext: ad.managedObjectContext) as! Recipe
-		recipe1.name = "Guacamole"
-		recipe1.setRecipeImage(UIImage(named: "guacamole")!)
+		recipe1.name = "Stuffed Mushrooms"
+		recipe1.setRecipeImage(UIImage(named: "mushrooms")!)
 		recipe1.category = allCategories[0]
-		recipe1.servings = 4
-		recipe1.time = 10
-		recipe1.ingredients = "-3 Avocados\n-1 Lime\n-1 tsp Salt\n-1/2 Cup Diced Onion\n-3 tbsp Cilantro\n-2 Roma Tomatoes, diced\n-1 tsp Minced Garlic"
-		recipe1.directions = "-In a medium bowl, mash together the avocados, lime juice, and salt.\n-Mix in onion, cilantro, tomatoes, and garlic. \n-Stir in cayenne pepper.\n- Refrigerate 1 hour for best flavor, or serve immediately."
-		recipe1.link = "http://allrecipes.com/recipe/14231/guacamole/?internalSource=hub%20recipe&referringId=76&referringContentType=recipe%20hub"
+		recipe1.servings = 12
+		recipe1.time = 45
+		recipe1.ingredients = "-12 whole fresh mushrooms\n-1 tbsp vegetable oil\n-1 tbsp minced garlic\n-1 8oz package cream cheese\n-1/4 cup grated parmesan cheese\n-1/4 tsp black pepper\n-1/4 tsp onion powder\n-1/4 tsp cayenne pepper"
+		recipe1.directions = "-Preheat oven to 350 degrees F (175 degrees C). Spray a baking sheet with cooking spray. Clean mushrooms with a damp paper towel. Carefully break off stems. Chop stems extremely fine, discarding tough end of stems.\n-Heat oil in a large skillet over medium heat. Add garlic and chopped mushroom stems to the skillet. Fry until any moisture has disappeared, taking care not to burn garlic. Set aside to cool.\n-When garlic and mushroom mixture is no longer hot, stir in cream cheese, Parmesan cheese, black pepper, onion powder and cayenne pepper. Mixture should be very thick. Using a little spoon, fill each mushroom cap with a generous amount of stuffing. Arrange the mushroom caps on prepared cookie sheet.\n-Bake for 20 minutes in the preheated oven, or until the mushrooms are piping hot and liquid starts to form under caps."
+		recipe1.link = "http://allrecipes.com/recipe/15184/mouth-watering-stuffed-mushrooms/?internalSource=staff%20pick&referringId=76&referringContentType=recipe%20hub"
 		
 		// 2) Soup / Chili
 		let recipe2 = NSEntityDescription.insertNewObjectForEntityForName("Recipe", inManagedObjectContext: ad.managedObjectContext) as! Recipe
