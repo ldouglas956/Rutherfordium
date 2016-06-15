@@ -31,7 +31,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="250"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="breakfast" translatesAutoresizingMaskIntoConstraints="NO" id="FiJ-If-5gE">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appetizers" translatesAutoresizingMaskIntoConstraints="NO" id="FiJ-If-5gE">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="250"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XX Recipes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sq5-YB-PSB">
@@ -513,7 +513,7 @@ Thanks for downloading!</string>
         </scene>
     </scenes>
     <resources>
-        <image name="breakfast" width="270" height="180"/>
+        <image name="appetizers" width="270" height="179"/>
         <image name="cooker" width="256" height="256"/>
         <image name="dish" width="467" height="233"/>
         <image name="silverware" width="475" height="251"/>
