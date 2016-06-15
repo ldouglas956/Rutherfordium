@@ -32,7 +32,7 @@ class Categories {
 		category8.title = "2) Soup / Chili"
 		category9.title = "1) Appetizers"
 		
-		category1.setCatImage(UIImage(named: "breakfast")!)
+		category1.setCatImage(UIImage(named: "appetizers")!)
 		category2.setCatImage(UIImage(named: "dessert")!)
 		category3.setCatImage(UIImage(named: "drinks")!)
 		category4.setCatImage(UIImage(named: "mainCourse")!)
