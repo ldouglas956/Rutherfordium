@@ -513,10 +513,10 @@ Thanks for downloading!</string>
         </scene>
     </scenes>
     <resources>
-        <image name="breakfast" width="540" height="360"/>
-        <image name="cooker" width="512" height="512"/>
-        <image name="dish" width="935" height="467"/>
-        <image name="silverware" width="950" height="502"/>
+        <image name="breakfast" width="270" height="180"/>
+        <image name="cooker" width="256" height="256"/>
+        <image name="dish" width="467" height="233"/>
+        <image name="silverware" width="475" height="251"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="5jt-oW-Tu8"/>

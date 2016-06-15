@@ -519,7 +519,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.LanceDouglas.Rutherfordium;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "5893aa22-5676-4e6f-affb-cbb9c20dfbf0";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -534,7 +534,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.LanceDouglas.Rutherfordium;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "5893aa22-5676-4e6f-affb-cbb9c20dfbf0";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
